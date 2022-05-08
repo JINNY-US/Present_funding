@@ -1,34 +1,99 @@
 package com.example.present_funding;
 
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.google.android.gms.auth.api.identity.BeginSignInRequest;
+import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends Activity {
 
-    Button goJoin, goMain;
-    //private Object FirebaseAuth;
+    Button goJoin, goMain, signwithGoogle, findPwd;
+    EditText Idtxt, Pwdtxt;
+    //Firebase에서 계정 정보를 가져오는 객체
+    private FirebaseAuth firebaseAuth;
+
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    //구글 로그인을 위한 객체
+
+    DatabaseReference mDatabase;
+
+    SharedPreferences.Editor editor;
+
+    //onActivityResultCode 를 위한것
+    private static final int RC_SIGN_IN = 9001;
+
+    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+    private boolean showOneTapUI = true;
 
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         goJoin = findViewById(R.id.btn_join);
+        goMain = findViewById(R.id.btn_login);
+        signwithGoogle = findViewById(R.id.btn_sign_with_google);
+        findPwd = findViewById(R.id.btn_findPwd);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("sFile", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        //로그인 버튼이 눌리면
+        goMain.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //intent함수를 통해 register액티비티 함수를 호출한다.
+                startActivity(new Intent(getApplication(), MainActivity.class));
+
+                String id, pwd;
+
+                if (!Idtxt.getText().toString().equals("") && !Pwdtxt.getText().toString().equals("")) {
+                    id = Idtxt.getText().toString().trim();
+                    pwd = Pwdtxt.getText().toString().trim();
+                    loginUser(id, pwd);
+                } else {
+                    Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        //회원가입 버튼이 눌리면
         goJoin.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -39,85 +104,85 @@ public class LoginActivity extends Activity {
             }
         });
 
-        goMain = findViewById(R.id.btn_login);
-        goMain.setOnClickListener(new View.OnClickListener() {
+        //구글 아이디로 로그인 버튼이 눌리면
+        signwithGoogle.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //intent함수를 통해 register액티비티 함수를 호출한다.
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                //startActivity(new Intent(getApplication(), MainActivity.class));
+
 
             }
         });
 
-        /*
-        // [START declare_auth]
-        private lateinit var auth: FirebaseAuth;
-        // [END declare_auth]
-        private lateinit var googleSignInClient: GoogleSignInClient;
-        private lateinit var authResultLauncher: ActivityResultLauncher<Intent>;
+        //비밀번호 찾기 버튼이 눌리면
+        findPwd.setOnClickListener(new View.OnClickListener() {
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-        authResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()); {
-            result -> val data: Intent? = result.data;
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java);
-
-                Log.d("signin", "success");
-                firebaseAuthWithGoogle(account);
-            } catch (e:ApiException) {
-                Log.d("signin", "failure");
-                Log.e("task", "error", e);
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), FindActivity.class));
 
             }
-
-        }
-        */
+        });
 
     }
 
-    /*
+    private void readUser() {
+        FirebaseUser user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
+        String uid = user != null ? user.getUid() : null;
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Users").child(uid).child("userType").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Intent intent;
+                Toast.makeText(LoginActivity.this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
+                intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                editor.putString("userType", snapshot.getValue(String.class));
+                editor.commit();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+    }
+
+    public void loginUser(String email, String password) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            if (user.isEmailVerified()) {
+                                Toast.makeText(LoginActivity.this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
+                                readUser();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "이메일 인증이 필요합니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(LoginActivity.this, "이메일 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                });
+    }
+
+
     @Override
-    fun onStart() {
+    protected void onStart() {
         super.onStart();
-
-        auth = FirebaseAuth.getInstance();
-        val currentUser = auth.currentUser;
-        updateUI(currentUser);
     }
 
-    private fun firebaseAuthWithGoogle(account:GoogleSignInAccount?){
-
-        val credential = GoogleAuthProvider.getCredential(account?.idToken!!, null);
-
-        auth?.signInWithCredential(credential)
-                ?.addOnCompleteListener {
-            task ->
-            if (task.isSuccessful) {
-                Log.d("signin", "success2");
-
-                accessToken = account.idToken.toString();
-                Log.d("TOKEN",accessToken);
-
-                val user = FirebaseAuth.getInstance().currentUser;
-                updateUI(user);
-                AuthService.googleLogin(this,accessToken);
-
-            } else {
-                Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show();
-            }
-        }
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
-    *?
-     */
 }
+
