@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Funding_fail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/pb_fail"
+            style="@android:style/Widget.DeviceDefault.ProgressBar"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_fail"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="@+id/pb_fail"
+            app:layout_constraintEnd_toEndOf="@+id/pb_fail"
+            app:layout_constraintStart_toStartOf="@+id/pb_fail"
+            app:layout_constraintTop_toTopOf="@+id/pb_fail"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <TextView
+            android:id="@+id/txt_achivement_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="모인 금액: 80000원"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_achivement_percent_fail"
+            app:layout_constraintEnd_toStartOf="@+id/txt_achivement_percent_fail"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/pb_fail"
+            app:layout_constraintTop_toBottomOf="@+id/txt_fail"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txt_achivement_percent_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="4dp"
+            android:text="(80%)"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/pb_fail"
+            app:layout_constraintTop_toBottomOf="@+id/txt_fail" />
+
+        <TextView
+            android:id="@+id/txt_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="펀딩 실패"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pb_fail" />
+
+        <Button
+            android:id="@+id/btn_addself"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="금액 투자"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_replace_present"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_achivement_percent_fail"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/btn_replace_present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="상품 변경"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cancel_funding"
+            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintStart_toEndOf="@+id/btn_addself"
+            app:layout_constraintTop_toBottomOf="@+id/txt_achivement_percent_fail" />
+
+        <Button
+            android:id="@+id/btn_cancel_funding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:text="펀딩 취소"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_replace_present"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_achivement_percent_fail"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Funding_open"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="66dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="현재 진행 중인 펀딩이 없습니다."
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="받고 싶은 선물을 선택하여 펀딩을 열어보세요!"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Button
+            android:id="@+id/btn_wishlist_go"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="위시리스트에서 찾아보기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_market_go" />
+
+        <Button
+            android:id="@+id/btn_market_go"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="마켓에서 찾아보기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:srcCompat="@drawable/googleg_standard_color_18"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Funding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="-148dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/img_funding"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pb_funding"
+            app:layout_constraintEnd_toEndOf="@+id/pb_funding"
+            app:layout_constraintStart_toStartOf="@+id/pb_funding"
+            app:layout_constraintTop_toTopOf="@+id/pb_funding"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <Button
+            android:id="@+id/btn_share"
+            android:layout_width="159dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="70dp"
+            android:text="펀딩 공유하기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_achivement" />
+
+        <ProgressBar
+            android:id="@+id/pb_funding"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="50dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_achivement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="모인 금액: 0 원"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_achivement_percent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_achivement_percent"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_day" />
+
+        <TextView
+            android:id="@+id/txt_achivement_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="80dp"
+            android:text="(0%)"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_day" />
+
+        <TextView
+            android:id="@+id/txt_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="D-15"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pb_funding" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

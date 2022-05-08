@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/Id"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="160dp"
+        android:ems="10"
+        android:hint="presentforyou@gmail.com"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Pwd"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="비밀번호를 입력해주세요."
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Id" />
+
+    <Button
+        android:id="@+id/btn_join"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="회원가입"
+        app:layout_constraintEnd_toStartOf="@+id/btn_login"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_findId"
+        app:layout_constraintTop_toBottomOf="@+id/btn_findId" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="로그인"
+        app:layout_constraintEnd_toEndOf="@+id/btn_findPwd"
+        app:layout_constraintTop_toBottomOf="@+id/btn_findPwd" />
+
+    <Button
+        android:id="@+id/btn_login_google"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="구글 계정으로 로그인"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="@+id/btn_join"
+        app:layout_constraintTop_toBottomOf="@+id/btn_join" android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_login_kakao"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="160dp"
+        android:text="카카오 계정으로 로그인"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login_google"
+        app:layout_constraintStart_toStartOf="@+id/btn_login_google"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_google" android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btn_findId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:text="아이디 찾기"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_findPwd"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Pwd"
+        app:layout_constraintTop_toBottomOf="@+id/Pwd" android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/btn_findPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:text="비밀번호 찾기"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/Pwd"
+        app:layout_constraintTop_toBottomOf="@+id/Pwd" android:textColor="#000000"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

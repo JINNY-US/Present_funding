@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "873015840105",
+    "project_id": "prensentfunding",
+    "storage_bucket": "prensentfunding.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873015840105:android:6489025a404ab3bdb1c1f8",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873015840105-bsrq9d82eva4brom0fo2o6e7jnk216h0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.application",
+            "certificate_hash": "42e9f88dff5301c4b2d5a931409dc5a85a6b5698"
+          }
+        },
+        {
+          "client_id": "873015840105-d0ai0ovc24bidtgqm6rdm74sljlpdhom.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7VDJ_yz_u7OS5-pXu4eaVO2TaaceJDdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873015840105-d0ai0ovc24bidtgqm6rdm74sljlpdhom.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
