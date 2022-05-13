@@ -1,7 +1,6 @@
 package com.example.present_funding;
 
 
-import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -68,18 +67,17 @@ public class LoginActivity extends Activity {
         signwithGoogle = findViewById(R.id.btn_sign_with_google);
         findPwd = findViewById(R.id.btn_findPwd);
 
+        Idtxt = findViewById(R.id.Id);
+        Pwdtxt = findViewById(R.id.Pwd);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("sFile", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         //로그인 버튼이 눌리면
         goMain.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                //intent함수를 통해 register액티비티 함수를 호출한다.
-                startActivity(new Intent(getApplication(), MainActivity.class));
-
                 String id, pwd;
 
                 if (!Idtxt.getText().toString().equals("") && !Pwdtxt.getText().toString().equals("")) {
@@ -89,7 +87,6 @@ public class LoginActivity extends Activity {
                 } else {
                     Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 
@@ -136,11 +133,11 @@ public class LoginActivity extends Activity {
         mDatabase.child("Users").child(uid).child("userType").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Intent intent;
-                Toast.makeText(LoginActivity.this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
-                intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+//                Intent intent;
+//                Toast.makeText(LoginActivity.this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
+//                intent = new Intent(LoginActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                finish();
                 editor.putString("userType", snapshot.getValue(String.class));
                 editor.commit();
             }
@@ -160,8 +157,12 @@ public class LoginActivity extends Activity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if (user.isEmailVerified()) {
+                                Intent intent;
                                 Toast.makeText(LoginActivity.this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
                                 readUser();
+                                intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, "이메일 인증이 필요합니다.", Toast.LENGTH_SHORT).show();
                             }

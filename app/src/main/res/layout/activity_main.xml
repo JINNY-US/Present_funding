@@ -9,7 +9,7 @@
         android:id="@+id/Funding_fail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <ProgressBar
             android:id="@+id/pb_fail"
@@ -110,7 +110,7 @@
         android:id="@+id/Funding_open"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
+        android:visibility="visible"
         tools:layout_editor_absoluteX="165dp"
         tools:layout_editor_absoluteY="66dp">
 
