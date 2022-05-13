@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".MarketActivity">
 
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/mypage_toolbar"
+      android:layout_width="414dp"
+      android:layout_height="55dp"
+      android:background="@color/main_orange"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarTheme"
+      android:visibility="visible"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:title="   마이 페이지"
+      app:titleTextColor="#FFFFFF"
+      tools:menu="@menu/actionbar_actions" />
+
   <TextView
       android:text="TextView"
       android:layout_width="wrap_content"
