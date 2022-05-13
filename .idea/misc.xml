@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/SM/Present_funding/app/src/main/res/drawable/googleg_standard_color_18.xml" value="0.212" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/drawable/ic_action_mypage.xml" value="0.152" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/drawable/side_nav_bar.xml" value="0.28" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout-ldltr/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout-ldltr/activity_mypage.xml" value="0.22826086956521738" />
@@ -18,6 +19,9 @@
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_mypage.xml" value="0.22826086956521738" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_wishlist.xml" value="0.22826086956521738" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/app_bar_main.xml" value="0.358695652173913" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/menu/actionbar_actions.xml" value="0.25364583333333335" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/menu/bottom_navigation.xml" value="0.25364583333333335" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/menu/nav.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
