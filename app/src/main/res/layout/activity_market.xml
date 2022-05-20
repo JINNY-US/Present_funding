@@ -18,28 +18,43 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:title="   마이 페이지"
+      app:title="   마켓 페이지"
       app:titleTextColor="#FFFFFF"
       tools:menu="@menu/actionbar_actions" />
 
-  <TextView
-      android:text="TextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/textView"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
-      app:layout_constraintTop_toTopOf="parent"
-      android:layout_marginTop="16dp"
-      android:visibility="visible"/>
 
   <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerView"
       android:layout_width="409dp"
       android:layout_height="694dp"
-      android:layout_marginTop="1dp"
-      app:layout_constraintTop_toBottomOf="@+id/textView"
-      app:layout_constraintStart_toStartOf="parent"
+      android:layout_marginTop="100dp"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/txt_shearch" />
+
+  <EditText
+      android:id="@+id/txt_shearch"
+      android:layout_width="360dp"
+      android:layout_height="50dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      app:layout_constraintEnd_toStartOf="@+id/btn_shearch"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar"
+      tools:ignore="SpeakableTextPresentCheck" />
+
+  <ImageButton
+      android:id="@+id/btn_shearch"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_marginStart="361dp"
+      android:background="#00FFFFFF"
+      android:src="@android:drawable/ic_menu_search"
+      app:layout_constraintBottom_toBottomOf="@+id/txt_shearch"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/recyclerView"
+      app:layout_constraintTop_toTopOf="@+id/txt_shearch"
+      tools:ignore="SpeakableTextPresentCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
