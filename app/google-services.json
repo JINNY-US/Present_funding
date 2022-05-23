@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "873015840105",
+    "firebase_url": "https://prensentfunding-default-rtdb.firebaseio.com",
     "project_id": "prensentfunding",
     "storage_bucket": "prensentfunding.appspot.com"
   },

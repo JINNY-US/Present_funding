@@ -1,7 +1,7 @@
 package com.example.present_funding;
 
 public class Product {
-    private String brand, image, name;
+    private String brand, img, name;
     private int price;
 
     public Product() {}
@@ -15,11 +15,11 @@ public class Product {
     }
 
     public String getImage() {
-        return image;
+        return img;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String img) {
+        this.img = img;
     }
 
     public String getName() {

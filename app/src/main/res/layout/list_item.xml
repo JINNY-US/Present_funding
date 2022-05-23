@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,22 +31,22 @@
                 android:id="@+id/txt_product_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="브랜드"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="브랜드" />
 
             <TextView
                 android:id="@+id/txt_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="상품 이름"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="상품 이름" />
 
             <TextView
                 android:id="@+id/txt_product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가격"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="가격" />
 
         </LinearLayout>
 

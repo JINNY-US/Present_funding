@@ -3,9 +3,9 @@ package com.example.present_funding;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Adapter;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,11 +14,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.ArrayList;
 
-public class MarketActivity extends Activity {
+public class MarketActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -26,13 +25,14 @@ public class MarketActivity extends Activity {
     private ArrayList<Product> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    //private String brand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.re_market);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -40,7 +40,7 @@ public class MarketActivity extends Activity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
 
-        databaseReference = database.getReference("market");
+        databaseReference = database.getReference("Product");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -48,6 +48,7 @@ public class MarketActivity extends Activity {
                 arrayList.clear(); //초기화
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Product product = snapshot.getValue(Product.class);
+                    //brand = snapshot.child("brand").getValue(String.class);
                     arrayList.add(product); //data를 recycler로 보낼 준비
                 }
                 adapter.notifyDataSetChanged();

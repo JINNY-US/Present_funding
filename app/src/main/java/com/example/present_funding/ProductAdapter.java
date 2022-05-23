@@ -36,28 +36,30 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getImage())
-                .into(holder.product_image);
-        holder.product_brand.setText(arrayList.get(position).getBrand());
-        holder.product_name.setText(arrayList.get(position).getName());
-        holder.product_price.setText(String.valueOf(arrayList.get(position).getPrice()));
+                .into(holder.pd_img);
+        holder.pd_brand.setText(arrayList.get(position).getBrand());
+        holder.pd_name.setText(arrayList.get(position).getName());
+        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        return (arrayList != null ? arrayList.size() : 0); //삼항 연산자
+        return (
+                arrayList != null ? arrayList.size() : 0); //삼항 연산자
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView product_image;
-        TextView product_brand, product_name, product_price;
+        ImageView pd_img;
+        TextView pd_brand, pd_name, pd_price;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.product_image = itemView.findViewById(R.id.img_product_image);
-            this.product_brand = itemView.findViewById(R.id.txt_product_brand);
-            this.product_name = itemView.findViewById(R.id.txt_product_name);
-            this.product_price = itemView.findViewById(R.id.txt_product_price);
+            this.pd_img = itemView.findViewById(R.id.img_product_image);
+            this.pd_brand = itemView.findViewById(R.id.txt_product_brand);
+            this.pd_name = itemView.findViewById(R.id.txt_product_name);
+            this.pd_price = itemView.findViewById(R.id.txt_product_price);
+
         }
     }
 }

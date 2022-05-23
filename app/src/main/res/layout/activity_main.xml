@@ -24,7 +24,9 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent" >
-            </LinearLayout><androidx.constraintlayout.widget.ConstraintLayout
+            </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Funding_fail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
