@@ -1,8 +1,7 @@
 package com.example.present_funding;
 
 public class Product {
-    private String brand, img, name;
-    private int price;
+    private String brand, img, name, price;
 
     public Product() {}
 
@@ -30,11 +29,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

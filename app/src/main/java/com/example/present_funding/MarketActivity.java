@@ -40,7 +40,7 @@ public class MarketActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
 
-        databaseReference = database.getReference("Product");
+        databaseReference = database.getReference("Market");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
