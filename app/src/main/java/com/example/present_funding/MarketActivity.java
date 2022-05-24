@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +26,6 @@ public class MarketActivity extends AppCompatActivity {
     private ArrayList<Product> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    //private String brand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +48,11 @@ public class MarketActivity extends AppCompatActivity {
                 arrayList.clear(); //초기화
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Product product = snapshot.getValue(Product.class);
-                    //brand = snapshot.child("brand").getValue(String.class);
                     arrayList.add(product); //data를 recycler로 보낼 준비
+
                 }
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -62,5 +63,26 @@ public class MarketActivity extends AppCompatActivity {
         });
         adapter = new ProductAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); //adapter 연결
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                int totalCount = recyclerView.getAdapter().getItemCount();
+
+                if(lastPosition == totalCount){
+                    //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
+                }
+            }
+        });
+        DividerItemDecoration div = new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(this).getOrientation());
+        recyclerView.addItemDecoration(div); // 아이템 사이에 구분을 주기 위한 줄나눔
     }
 }

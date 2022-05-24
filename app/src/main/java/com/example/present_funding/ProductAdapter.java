@@ -35,11 +35,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getImage())
+                .load(arrayList.get(position).getImg())
                 .into(holder.pd_img);
         holder.pd_brand.setText(arrayList.get(position).getBrand());
         holder.pd_name.setText(arrayList.get(position).getName());
-        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice()));
+        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice())+" 원");
     }
 
     @Override

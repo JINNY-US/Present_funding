@@ -13,11 +13,11 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getImage() {
+    public String getImg() {
         return img;
     }
 
-    public void setImage(String img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
