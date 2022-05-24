@@ -64,24 +64,24 @@ public class MarketActivity extends AppCompatActivity {
         adapter = new ProductAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); //adapter 연결
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                int totalCount = recyclerView.getAdapter().getItemCount();
-
-                if(lastPosition == totalCount){
-                    //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
-                }
-            }
-        });
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+//                int totalCount = recyclerView.getAdapter().getItemCount();
+//
+//                if(lastPosition == totalCount){
+//                    //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
+//                }
+//            }
+//        });
         DividerItemDecoration div = new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(div); // 아이템 사이에 구분을 주기 위한 줄나눔
     }
