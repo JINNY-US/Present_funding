@@ -26,9 +26,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                //intent함수를 통해 register액티비티 함수를 호출한다.
                 startActivity(new Intent(getApplication(), MarketActivity.class));
-
             }
         });
 
@@ -37,9 +35,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                //intent함수를 통해 register액티비티 함수를 호출한다.
                 startActivity(new Intent(getApplication(), WishlistActivity.class));
-
             }
         });
     }

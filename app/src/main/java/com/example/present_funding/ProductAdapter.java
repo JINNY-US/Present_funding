@@ -44,22 +44,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.pd_name.setText(arrayList.get(position).getName());
         holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice())+" 원");
 
-//        holder.itemView.setClickable(true);
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int pos = holder.getAdapterPosition();
-//                if(pos != RecyclerView.NO_POSITION) {
-//                    Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//                    intent.putExtra("brand", String.valueOf(arrayList.get(pos).getBrand()));
-//                    intent.putExtra("name", String.valueOf(arrayList.get(pos).getName()));
-//                    intent.putExtra("price", String.valueOf(arrayList.get(pos).getPrice()));
-//                    intent.putExtra("img", String.valueOf(arrayList.get(pos).getImg()));
-//                    context.startActivity(intent);
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -80,19 +64,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             this.pd_name = itemView.findViewById(R.id.txt_product_name);
             this.pd_price = itemView.findViewById(R.id.txt_product_price);
 
-            itemView.setClickable(true);
+            itemView.setClickable(true);                                // 아이템뷰 클릭시 위치 정보를 가져와서 위치에 맞는 데이터 전송
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int pos = getAdapterPosition();
+                    int pos = getAdapterPosition();                     // pos = 0, 1, 2...이런 식으로 index값을 가져와서 데이터를 전송함
                     if(pos != RecyclerView.NO_POSITION) {
-                        Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
 
-                        intent.putExtra("brand", arrayList.get(pos).getBrand());
-                        intent.putExtra("name", arrayList.get(pos).getName());
-                        intent.putExtra("price", arrayList.get(pos).getPrice());
-                        intent.putExtra("img", arrayList.get(pos).getImg());
-                        context.startActivity(intent);
+                        intent.putExtra("brand", arrayList.get(pos).getBrand());      // pos에 맞는 데이터의 브랜드값을 전송
+                        intent.putExtra("name", arrayList.get(pos).getName());      // pos에 맞는 데이터의 이름값을 전송
+                        intent.putExtra("price", arrayList.get(pos).getPrice());        // pos에 맞는 데이터의 가격값을 전송
+                        intent.putExtra("img", arrayList.get(pos).getImg());        // pos에 맞는 데이터의 이미지값을 전송
+                        context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }
                 }
             });

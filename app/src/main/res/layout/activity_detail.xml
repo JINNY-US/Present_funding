@@ -102,7 +102,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/btn_star_off"
+        android:id="@+id/btn_wish"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="10dp"

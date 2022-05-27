@@ -20,10 +20,10 @@ import java.util.ArrayList;
 
 public class MarketActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView; // 상품 나열할 뷰
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Product> arrayList;
+    private ArrayList<Product> arrayList; // 상품 정보 저장할 리스트
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -43,15 +43,15 @@ public class MarketActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
 
-        databaseReference = database.getReference("Market");
+        databaseReference = database.getReference("Market");  // firebase에 저장되어 있는 Market에 대한 하위 데이터 수집
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase의 데이터를 받아오는 곳
                 arrayList.clear(); //초기화
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Product product = snapshot.getValue(Product.class);
-                    arrayList.add(product); //data를 recycler로 보낼 준비
+                    Product product = snapshot.getValue(Product.class);         // Market에 대한 하위 데이터(getChildren)를 product(구조체? 형식)에 저장
+                    arrayList.add(product); //data를 recycler로 보낼 준비         // 미리 만들어둔 배열에 product 저장
                 }
                 adapter.notifyDataSetChanged();
             }
