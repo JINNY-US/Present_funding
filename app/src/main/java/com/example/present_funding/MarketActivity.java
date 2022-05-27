@@ -27,22 +27,21 @@ public class MarketActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_market);
 
+        layoutManager = new LinearLayoutManager(this);
+
         recyclerView = findViewById(R.id.re_market);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
         arrayList = new ArrayList<>(); //product 객체를 담는 리스트
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
-
 
         databaseReference = database.getReference("Market");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -53,10 +52,8 @@ public class MarketActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Product product = snapshot.getValue(Product.class);
                     arrayList.add(product); //data를 recycler로 보낼 준비
-
                 }
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -70,7 +67,5 @@ public class MarketActivity extends AppCompatActivity {
 
         DividerItemDecoration div = new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(div); // 아이템 사이에 구분을 주기 위한 줄나눔
-
-
     }
 }

@@ -1,7 +1,5 @@
 package com.example.present_funding;
 
-
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

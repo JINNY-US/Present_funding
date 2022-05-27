@@ -6,6 +6,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +43,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.pd_brand.setText(arrayList.get(position).getBrand());
         holder.pd_name.setText(arrayList.get(position).getName());
         holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice())+" 원");
+
+//        holder.itemView.setClickable(true);
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int pos = holder.getAdapterPosition();
+//                if(pos != RecyclerView.NO_POSITION) {
+//                    Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//                    intent.putExtra("brand", String.valueOf(arrayList.get(pos).getBrand()));
+//                    intent.putExtra("name", String.valueOf(arrayList.get(pos).getName()));
+//                    intent.putExtra("price", String.valueOf(arrayList.get(pos).getPrice()));
+//                    intent.putExtra("img", String.valueOf(arrayList.get(pos).getImg()));
+//                    context.startActivity(intent);
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -54,11 +72,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         ImageView pd_img;
         TextView pd_brand, pd_name, pd_price;
-        //View layout_product;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            //this.layout_product = itemView.findViewById(R.id.layout_product);
             this.pd_img = itemView.findViewById(R.id.img_product_image);
             this.pd_brand = itemView.findViewById(R.id.txt_product_brand);
             this.pd_name = itemView.findViewById(R.id.txt_product_name);
@@ -72,12 +88,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     if(pos != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                        intent.putExtra("Text", String.valueOf(arrayList.get(pos)));
+                        intent.putExtra("brand", arrayList.get(pos).getBrand());
+                        intent.putExtra("name", arrayList.get(pos).getName());
+                        intent.putExtra("price", arrayList.get(pos).getPrice());
+                        intent.putExtra("img", arrayList.get(pos).getImg());
                         context.startActivity(intent);
                     }
                 }
             });
-
         }
     }
 }
