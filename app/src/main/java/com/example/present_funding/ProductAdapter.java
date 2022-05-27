@@ -1,6 +1,8 @@
 package com.example.present_funding;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,13 +54,29 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         ImageView pd_img;
         TextView pd_brand, pd_name, pd_price;
+        //View layout_product;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
+            //this.layout_product = itemView.findViewById(R.id.layout_product);
             this.pd_img = itemView.findViewById(R.id.img_product_image);
             this.pd_brand = itemView.findViewById(R.id.txt_product_brand);
             this.pd_name = itemView.findViewById(R.id.txt_product_name);
             this.pd_price = itemView.findViewById(R.id.txt_product_price);
+
+            itemView.setClickable(true);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION) {
+                        Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        intent.putExtra("Text", String.valueOf(arrayList.get(pos)));
+                        context.startActivity(intent);
+                    }
+                }
+            });
 
         }
     }
