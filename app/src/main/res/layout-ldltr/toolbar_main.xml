@@ -2,10 +2,12 @@
 <androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="55dp"
     app:contentInsetStart="0dp"
-    android:background="@color/main_orange">
+    android:background="@color/main_orange"
+    tools:ignore="MissingDefaultResource">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,22 +25,22 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:textStyle="bold"
+            android:text="어디가게?"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:text="어디가게?" />
+            android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/iv_menu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="370dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="9dp"
-            app:srcCompat="@drawable/ic_action_mypage" />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_menu"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginStart="370dp"-->
+<!--            android:layout_marginTop="11dp"-->
+<!--            android:layout_marginBottom="9dp"-->
+<!--            app:srcCompat="@drawable/ic_action_mypage" />-->
 
     </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>

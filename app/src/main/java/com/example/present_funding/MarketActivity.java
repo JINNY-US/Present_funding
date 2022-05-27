@@ -27,9 +27,12 @@ public class MarketActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_market);
 
         recyclerView = findViewById(R.id.re_market);
@@ -39,6 +42,7 @@ public class MarketActivity extends AppCompatActivity {
         arrayList = new ArrayList<>(); //product 객체를 담는 리스트
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
+
 
         databaseReference = database.getReference("Market");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -63,6 +67,7 @@ public class MarketActivity extends AppCompatActivity {
         });
         adapter = new ProductAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); //adapter 연결
+
 
 //        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //            @Override
