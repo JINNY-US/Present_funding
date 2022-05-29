@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:textAlignment="center"
     tools:context=".MypageActivity">
 
@@ -20,18 +20,64 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:title="   마이페이지"
+      app:title="마이페이지"
       app:titleTextColor="#FFFFFF"
       tools:menu="@menu/actionbar_actions" />
 
-  <LinearLayout
+  <Button
+      android:id="@+id/btn_my_funding"
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:orientation="vertical"
-      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_height="70dp"
+      android:background="@drawable/go_to_setting_btn"
+      android:drawableRight="@drawable/follow_icon"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:text="나의 펀딩"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar"></LinearLayout>
+      app:layout_constraintTop_toBottomOf="@+id/btn_my_profile" />
 
+  <Button
+      android:id="@+id/btn_my_profile"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:drawableLeft="@drawable/image_icon"
+      android:drawableRight="@drawable/follow_icon"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:text="USERID"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar"
+      tools:ignore="TextContrastCheck" />
+
+  <Button
+      android:id="@+id/btn_my_wishlist"
+      android:layout_width="match_parent"
+      android:layout_height="70dp"
+      android:background="@drawable/go_to_setting_btn"
+      android:drawableRight="@drawable/follow_icon"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:text="나의 위시리스트"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btn_my_funding" />
+
+  <Button
+      android:id="@+id/btn_logout"
+      android:layout_width="match_parent"
+      android:layout_height="70dp"
+      android:background="@drawable/go_to_setting_btn"
+      android:drawableRight="@drawable/follow_icon"
+      android:onClick="signOut"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:text="로그아웃"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btn_my_wishlist"
+      tools:ignore="OnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

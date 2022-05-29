@@ -35,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends Activity {
 
-    Button goJoin, goMain, signwithGoogle, findPwd;
+    Button goJoin, goMain, findPwd;
     EditText Idtxt, Pwdtxt;
     //Firebase에서 계정 정보를 가져오는 객체
     private FirebaseAuth firebaseAuth;
@@ -94,18 +94,6 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 //intent함수를 통해 register액티비티 함수를 호출한다.
                 startActivity(new Intent(getApplication(), JoinActivity.class));
-
-            }
-        });
-
-        //구글 아이디로 로그인 버튼이 눌리면
-        signwithGoogle.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //intent함수를 통해 register액티비티 함수를 호출한다.
-                //startActivity(new Intent(getApplication(), MainActivity.class));
-
 
             }
         });
