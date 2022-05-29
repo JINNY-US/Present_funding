@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".FundingStatusActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mypage_toolbar4"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
+        android:background="@color/main_orange"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="친구에게 펀딩"
+        app:titleTextColor="#FFFFFF"
+        tools:menu="@menu/actionbar_actions" />
+
     <TextView
         android:id="@+id/txt_funding_host"
         android:layout_width="wrap_content"
@@ -18,7 +33,7 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar4" />
 
     <ImageView
         android:id="@+id/iv_funding_img"

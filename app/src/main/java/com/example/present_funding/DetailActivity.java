@@ -46,7 +46,7 @@ public class DetailActivity extends AppCompatActivity {
         open_funding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MarketActivity.class)); // 펀딩 오픈 activity 만든 후에 바꿔야함!!!!!!!!!!!!!
+                startActivity(new Intent(getApplication(), FundingOpenActivity.class));
             }
         });
 

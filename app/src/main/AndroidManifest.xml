@@ -19,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Present_funding">
         <activity
+            android:name=".TestViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FundingOpenActivity"
+            android:exported="false" />
+        <activity
             android:name=".FundingStatusActivity"
             android:exported="false" />
         <activity

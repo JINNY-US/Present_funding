@@ -62,7 +62,6 @@ public class LoginActivity extends Activity {
 
         goJoin = findViewById(R.id.btn_join);
         goMain = findViewById(R.id.btn_login);
-        signwithGoogle = findViewById(R.id.btn_sign_with_google);
         findPwd = findViewById(R.id.btn_findPwd);
 
         Idtxt = findViewById(R.id.Id);

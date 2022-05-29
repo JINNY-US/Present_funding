@@ -1,6 +1,5 @@
 package com.example.present_funding;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -35,7 +34,7 @@ public class MarketActivity extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
 
-        recyclerView = findViewById(R.id.re_market);
+        recyclerView = findViewById(R.id.re_market_items);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 

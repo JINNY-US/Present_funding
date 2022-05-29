@@ -6,12 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".FundingFinishActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mypage_toolbar6"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
+        android:background="@color/main_orange"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="펀딩 완료"
+        app:titleTextColor="#FFFFFF"
+        tools:menu="@menu/actionbar_actions" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="38dp"
         android:gravity="center"
         android:text="감사합니다! \n펀딩 결제 예약이 완료되었습니다!"
@@ -19,7 +34,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar6" />
 
     <TextView
         android:id="@+id/txt_fund_info"
