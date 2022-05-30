@@ -9,4 +9,11 @@ public class WishlistActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wishlist);
     }
+
+    private BackPressCloseHandler backPressCloseHandler;
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 }

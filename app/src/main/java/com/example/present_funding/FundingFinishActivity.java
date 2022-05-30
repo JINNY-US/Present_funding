@@ -11,4 +11,11 @@ public class FundingFinishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_funding_finish);
     }
+
+    private BackPressCloseHandler backPressCloseHandler;
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 }

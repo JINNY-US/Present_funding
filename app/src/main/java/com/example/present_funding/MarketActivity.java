@@ -67,4 +67,11 @@ public class MarketActivity extends AppCompatActivity {
         DividerItemDecoration div = new DividerItemDecoration(recyclerView.getContext(), new LinearLayoutManager(this).getOrientation());
         recyclerView.addItemDecoration(div); // 아이템 사이에 구분을 주기 위한 줄나눔
     }
+
+    private BackPressCloseHandler backPressCloseHandler;
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 }

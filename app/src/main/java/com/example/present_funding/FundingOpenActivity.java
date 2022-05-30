@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 public class FundingOpenActivity extends AppCompatActivity {
 
+    private BackPressCloseHandler backPressCloseHandler;
+
     private Button btn_date, btn_open;
     private TextView txt_prod_price, txt_prod_name, txt_choicedate;
     private EditText txt_addr_detail, txt_addr;
@@ -85,5 +87,10 @@ public class FundingOpenActivity extends AppCompatActivity {
             }
     );
 
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 
 }

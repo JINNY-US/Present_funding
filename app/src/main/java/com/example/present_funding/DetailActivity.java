@@ -74,4 +74,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent2);
 
     }
+
+    private BackPressCloseHandler backPressCloseHandler;
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 }

@@ -160,7 +160,6 @@ public class LoginActivity extends Activity {
                 });
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -169,6 +168,13 @@ public class LoginActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    private BackPressCloseHandler backPressCloseHandler;
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
     }
 }
 

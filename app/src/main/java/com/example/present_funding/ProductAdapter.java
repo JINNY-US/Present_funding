@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
+
     private ArrayList<Product> arrayList;
     private Context context;
 

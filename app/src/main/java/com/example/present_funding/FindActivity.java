@@ -52,4 +52,10 @@ public class FindActivity extends AppCompatActivity implements View.OnClickListe
                     });
         }
     }
+    private BackPressCloseHandler backPressCloseHandler;
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 }
