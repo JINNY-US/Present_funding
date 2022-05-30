@@ -18,6 +18,8 @@ public class FundingOpenActivity extends AppCompatActivity {
     private TextView txt_prod_price, txt_prod_name, txt_choicedate;
     private EditText txt_addr_detail, txt_addr;
 
+    String get_name, get_price;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,15 @@ public class FundingOpenActivity extends AppCompatActivity {
         txt_addr = findViewById(R.id.txt_addr); //주소 입력창
         txt_addr_detail = findViewById(R.id.txt_addr_detail); //상세 주소 입력창
 
+        Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
+
+        get_name = intent.getStringExtra("send_name");
+        get_price = intent.getStringExtra("send_price");
+
+        if(get_name != null && get_price != null) {
+            txt_prod_name.setText(get_name); // 이름 태그에서 이름 불러오기
+            txt_prod_price.setText(get_price); // 가격 태그에서 가격 불러오기
+        }
 
         txt_addr.setFocusable(false);
         txt_addr.setOnClickListener(new View.OnClickListener() {

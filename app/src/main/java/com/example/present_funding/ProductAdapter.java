@@ -76,6 +76,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                         intent.putExtra("name", arrayList.get(pos).getName());      // pos에 맞는 데이터의 이름값을 전송
                         intent.putExtra("price", arrayList.get(pos).getPrice());        // pos에 맞는 데이터의 가격값을 전송
                         intent.putExtra("img", arrayList.get(pos).getImg());        // pos에 맞는 데이터의 이미지값을 전송
+
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }
                 }
