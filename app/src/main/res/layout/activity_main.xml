@@ -29,38 +29,44 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txt_popular"
+                android:id="@+id/txt_popular_student"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="[학생선물, 입학선물, 10대,20대 인기 등등]"
+                android:textSize="20sp" />
 
             <GridView
+                android:id="@+id/grid_student"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             </GridView>
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/txt_popular_merry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="[결혼선물, 혼수, 효도선물]"
+                android:textSize="20sp" />
 
             <GridView
+                android:id="@+id/grid_merry"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             </GridView>
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/txt_present_purchase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="[바로 선물하기]"
+                android:textSize="20sp" />
 
             <GridView
+                android:id="@+id/grid_purchase"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>
