@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Present_funding">
         <activity
+            android:name=".AddrSearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyFundingActivity"
             android:exported="false" />
         <activity
@@ -29,7 +32,13 @@
             android:exported="false" />
         <activity
             android:name=".FundingOpenActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".FundingStatusActivity"
             android:exported="false" />
@@ -44,23 +53,15 @@
             android:exported="true" />
         <activity
             android:name=".MarketActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".MypageActivity"
             android:exported="true"
-            android:label="@string/title_activity_mypage" >
-
-        </activity>
+            android:label="@string/title_activity_mypage"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".TestActivity"

@@ -1,17 +1,22 @@
 package com.example.present_funding;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class FundingOpenActivity extends AppCompatActivity {
 
-    private Button btn_date, btn_addr, btn_open;
-    private TextView txt_prod_price, txt_prod_name,txt_addr_detail, txt_addr, txt_zipcode, txt_choicedate;
+    private Button btn_date, btn_open;
+    private TextView txt_prod_price, txt_prod_name, txt_choicedate;
+    private EditText txt_addr_detail, txt_addr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,19 +24,29 @@ public class FundingOpenActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_funding_open);
 
-        btn_date = findViewById(R.id.btn_datepicker);
-        btn_addr = findViewById(R.id.btn_addr_search);
-        btn_open = findViewById(R.id.btn_open_funding_final);
+        btn_date = findViewById(R.id.btn_datepicker); //날찌 선택 버튼
+        btn_open = findViewById(R.id.btn_open_funding_final); // 펀딩 오픈 버튼
 
-        txt_prod_price = findViewById(R.id.txt_cho_prod_price);
-        txt_prod_name = findViewById(R.id.txt_cho_prod_name);
-        txt_addr = findViewById(R.id.txt_addr);
-        txt_addr_detail = findViewById(R.id.txt_addr_detail);
-        txt_zipcode = findViewById(R.id.txt_zipcode);
-        txt_choicedate = findViewById(R.id.txt_choicedate);
+        txt_prod_name = findViewById(R.id.txt_cho_prod_name); //선택 상품명
+        txt_prod_price = findViewById(R.id.txt_cho_prod_price); //선택 상품가격
+        txt_choicedate = findViewById(R.id.txt_choicedate); //선택한 날짜
+        txt_addr = findViewById(R.id.txt_addr); //주소 입력창
+        txt_addr_detail = findViewById(R.id.txt_addr_detail); //상세 주소 입력창
+
+
+        txt_addr.setFocusable(false);
+        txt_addr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FundingOpenActivity.this, AddrSearchActivity.class);
+                getSearchResult.launch(intent);
+            }
+        });
 
 
     }
+
+
 
 
     public void showDatePicker(View view) {
@@ -46,4 +61,18 @@ public class FundingOpenActivity extends AppCompatActivity {
 
         txt_choicedate.setText(dateMessage);
     }
+
+    private final ActivityResultLauncher<Intent> getSearchResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == RESULT_OK){
+                    if(result.getData() != null){
+                        String data =  result.getData().getStringExtra("data");
+                        txt_addr.setText(data);
+                    }
+                }
+            }
+    );
+
+
 }
