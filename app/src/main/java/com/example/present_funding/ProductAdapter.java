@@ -43,7 +43,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.pd_brand.setText(arrayList.get(position).getBrand());
         holder.pd_name.setText(arrayList.get(position).getName());
         holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice())+" 원");
-
     }
 
     @Override
