@@ -3,7 +3,11 @@ package com.example.present_funding;
 public class Product {
     private String brand, img, name, price;
 
-    public Product() {}
+    public Product(String img, String name, String price) {
+        this.img = img;
+        this.name = name;
+        this.price = price;
+    }
 
     public String getBrand() {
         return brand;
