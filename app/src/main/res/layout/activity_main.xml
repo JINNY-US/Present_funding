@@ -12,6 +12,7 @@
         android:background="@color/main_orange"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,10 +20,16 @@
         app:titleTextColor="#FFFFFF"
         tools:menu="@menu/actionbar_actions" />
 
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="0dp"
+        android:layout_height="55dp" />
+
     <ScrollView
         android:id="@+id/sv_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -41,10 +48,21 @@
                 android:text="[학생선물, 입학선물, 10대,20대 인기 등등]"
                 android:textSize="20sp" />
 
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
+            </HorizontalScrollView>
+
             <GridView
                 android:id="@+id/grid_student"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
             </GridView>
 
@@ -55,10 +73,21 @@
                 android:text="[결혼선물, 혼수, 효도선물]"
                 android:textSize="20sp" />
 
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
+            </HorizontalScrollView>
+
             <GridView
                 android:id="@+id/grid_merry"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
             </GridView>
 
@@ -69,10 +98,21 @@
                 android:text="[바로 선물하기]"
                 android:textSize="20sp" />
 
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
+            </HorizontalScrollView>
+
             <GridView
                 android:id="@+id/grid_purchase"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>
