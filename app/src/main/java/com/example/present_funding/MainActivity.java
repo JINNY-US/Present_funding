@@ -8,17 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = MainActivity.class.getSimpleName();
 
     private ImageView ivMenu;
+    private Button go_market;
     //private FirebaseAuth firebaseAuth;
     //DatabaseReference mDatabase;
+
+    private ViewPager2 sliderViewPager;
+    private LinearLayout layoutIndicator;
 
     private GridView gv_student = null, gv_merry = null, gv_purchase = null;
     private GridViewAdapter adapter = null, adapter2 = null, adapter3 = null;
@@ -48,7 +57,28 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
+        String[] images = new String[] {"https://img1.kakaocdn.net/thumb/C276x276.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211019161851_b057979a9f884eb9a9dd417dc22c5533.jpg",
+                "https://img1.kakaocdn.net/thumb/C276x276.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211005153721_31437fc99fd542efbb51259ad9d03708.jpg",
+                "https://img1.kakaocdn.net/thumb/C600x600.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220325164122_066983f7d8aa45fb8d8bf81ca5563ab9.jpg"};
+
         ivMenu = findViewById(R.id.iv_menu);
+        go_market = findViewById(R.id.btn_go_market);
+
+        sliderViewPager = findViewById(R.id.sliderViewPager);
+        layoutIndicator = findViewById(R.id.layoutIndicators);
+
+        sliderViewPager.setOffscreenPageLimit(1);
+        //sliderViewPager.setAdapter(new ImageSliderAdapter(this, images));
+
+        sliderViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                setCurrentIndicator(position);
+            }
+        });
+
+        setupIndicators(images.length);
 
         gv_student = (GridView) findViewById(R.id.grid_student);
         gv_merry = (GridView) findViewById(R.id.grid_merry);
@@ -85,6 +115,48 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplication(), MypageActivity.class));
             }
         });
+
+        go_market.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), MarketActivity.class));
+            }
+        });
+    }
+
+    private void setupIndicators(int count) {
+        ImageView[] indicators = new ImageView[count];
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        params.setMargins(16, 8, 16, 8);
+
+        for (int i = 0; i < indicators.length; i++) {
+            indicators[i] = new ImageView(this);
+            indicators[i].setImageDrawable(ContextCompat.getDrawable(this,
+                    R.drawable.bg_indicator_inactive));
+            indicators[i].setLayoutParams(params);
+            layoutIndicator.addView(indicators[i]);
+        }
+        setCurrentIndicator(0);
+    }
+
+    private void setCurrentIndicator(int position) {
+        int childCount = layoutIndicator.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            ImageView imageView = (ImageView) layoutIndicator.getChildAt(i);
+            if (i == position) {
+                imageView.setImageDrawable(ContextCompat.getDrawable(
+                        this,
+                        R.drawable.bg_indicator_active
+                ));
+            } else {
+                imageView.setImageDrawable(ContextCompat.getDrawable(
+                        this,
+                        R.drawable.bg_indicator_inactive
+                ));
+            }
+        }
     }
 
     /* 그리드뷰 어댑터 */
@@ -119,12 +191,12 @@ public class MainActivity extends AppCompatActivity {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.grid_item, viewGroup, false);
 
-                TextView g_brand = (TextView) convertView.findViewById(R.id.txt_grid_brand);
+                //TextView g_brand = (TextView) convertView.findViewById(R.id.txt_grid_brand);
                 TextView g_name = (TextView) convertView.findViewById(R.id.txt_grid_name);
                 TextView g_price = (TextView) convertView.findViewById(R.id.txt_grid_price);
                 ImageView g_img = (ImageView) convertView.findViewById(R.id.iv_grid_img);
 
-                g_brand.setText(product.getBrand());
+                //g_brand.setText(product.getBrand());
                 g_name.setText(product.getName());
                 g_price.setText(product.getPrice());
                 Glide.with(convertView).load(product.getImg()).into(g_img);
@@ -139,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, product.getBrand()+ " : "+ product.getName()+" : "+product.getPrice(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, product.getName()+" : "+product.getPrice(), Toast.LENGTH_SHORT).show();
                     //Intent intent = new Intent(getApplication(), DetailActivity.class);
                     //startActivity(intent);
                 }
@@ -149,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-   // 뒤로가기 추가
+    // 뒤로가기 추가
     @Override
     public void onBackPressed() {
         backPressCloseHandler.onBackPressed();

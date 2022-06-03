@@ -36,7 +36,7 @@ public class JoinActivity extends Activity {
     //파이어베이스 인증 객체 생성
     private FirebaseAuth firebaseAuth;
 
-
+    private BackPressCloseHandler backPressCloseHandler;
 
     //비밀번호 정규식
     private static final Pattern PASSWORD_PATTERN= Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{6,16}$");
@@ -154,16 +154,16 @@ public class JoinActivity extends Activity {
                     userInfo.put("init_set", init_set);
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference userRef = database.getReference("Users");
+                    /*DatabaseReference userRef = database.getReference("Users");
                     userRef.child(uid).setValue(userInfo);
 
                     HashMap<Object, String> storeInfo = new HashMap<>();
                     HashMap<Object, String> userInfo_ = new HashMap<>();
 
-                    storeInfo.put("uid", uid);
+                    storeInfo.put("uid", uid);*/
 
-                    DatabaseReference storeRef = database.getReference("StoreInfo");
-                    storeRef.child(uid).setValue(storeInfo);
+                    //DatabaseReference storeRef = database.getReference("StoreInfo");
+                    //storeRef.child(uid).setValue(storeInfo);
 
                     //가입이 이루어졌을 시 가입 화면을 빠져나감
                     firebaseAuth.signOut();
@@ -196,10 +196,10 @@ public class JoinActivity extends Activity {
         });
     }
 
-    private BackPressCloseHandler backPressCloseHandler;
     //뒤로가기 추가
     @Override
     public void onBackPressed() {
         backPressCloseHandler.onBackPressed();
     }
+
 }

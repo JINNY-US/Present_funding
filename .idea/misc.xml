@@ -32,10 +32,15 @@
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_test_view.xml" value="0.2" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_wishlist.xml" value="0.22826086956521738" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/app_bar_main.xml" value="0.358695652173913" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/layout/bg_fading_edge.xml" value="0.25364583333333335" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/layout/bg_indicator_active.xml" value="0.25364583333333335" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/layout/bg_indicator_inactive.xml" value="0.25364583333333335" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/fragment_market.xml" value="0.264" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/fragment_mypage.xml" value="0.264" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/grid_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/layout/item_loading.xml" value="0.36614583333333334" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/layout/item_slider.xml" value="0.25364583333333335" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/list_item.xml" value="0.2329192546583851" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/menu.xml" value="0.2361111111111111" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/menu/actionbar_actions.xml" value="0.25364583333333335" />
