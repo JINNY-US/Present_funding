@@ -23,18 +23,21 @@
     <include
         android:id="@+id/include"
         layout="@layout/toolbar_main"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,7 +50,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="  [학생선물, 입학선물, 10대,20대 인기 등등]"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -61,14 +67,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_popular_student" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_popular_student">
+
+            </androidx.viewpager2.widget.ViewPager2>
 
             <View
                 android:id="@+id/viewFadingEdge"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/bg_fading_edge"
-                app:layout_constraintBottom_toBottomOf="@id/sliderViewPager" />
+                app:layout_constraintBottom_toBottomOf="@+id/sliderViewPager"
+                tools:ignore="MissingConstraints" />
 
             <LinearLayout
                 android:id="@+id/layoutIndicators"
@@ -87,31 +96,117 @@
                 android:id="@+id/txt_popular_merry"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="  [결혼선물, 혼수, 효도선물]"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="10dp"
-                tools:layout_editor_absoluteY="395dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutIndicators" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/sliderViewPager2"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_popular_merry">
+
+            </androidx.viewpager2.widget.ViewPager2>
+
+            <View
+                android:id="@+id/viewFadingEdge2"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_fading_edge"
+                app:layout_constraintBottom_toBottomOf="@+id/sliderViewPager2"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:id="@+id/layoutIndicators2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/viewFadingEdge2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txt_present_purchase"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="  [바로 선물하기]"
-                android:textSize="20sp" />
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutIndicators2" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/sliderViewPager3"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_present_purchase">
+
+            </androidx.viewpager2.widget.ViewPager2>
+
+            <View
+                android:id="@+id/viewFadingEdge3"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_fading_edge"
+                app:layout_constraintBottom_toBottomOf="@+id/sliderViewPager3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:id="@+id/layoutIndicators3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/viewFadingEdge3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/btn_go_market"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="마켓으로 가기"
+                android:text="Market"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewFadingEdge3"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
+
+    </ScrollView>
 
     <ScrollView
         android:layout_width="match_parent"
