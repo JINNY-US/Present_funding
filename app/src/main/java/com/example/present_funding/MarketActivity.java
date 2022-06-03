@@ -3,6 +3,8 @@ package com.example.present_funding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,12 +28,21 @@ public class MarketActivity extends AppCompatActivity {
     private ArrayList<Product> arrayList; // 상품 정보 저장할 리스트
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private ImageView ivMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_market);
+
+        //ivMenu = findViewById(R.id.iv_menu);
+//        ivMenu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplication(), MypageActivity.class));
+//            }
+//        });
 
         layoutManager = new LinearLayoutManager(this);
 

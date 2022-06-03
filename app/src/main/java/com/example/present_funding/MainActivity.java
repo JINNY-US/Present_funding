@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView ivMenu;
     private Button go_market;
+
     //private FirebaseAuth firebaseAuth;
     //DatabaseReference mDatabase;
 
@@ -59,7 +60,24 @@ public class MainActivity extends AppCompatActivity {
 
         String[] images = new String[] {"https://img1.kakaocdn.net/thumb/C276x276.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211019161851_b057979a9f884eb9a9dd417dc22c5533.jpg",
                 "https://img1.kakaocdn.net/thumb/C276x276.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20211005153721_31437fc99fd542efbb51259ad9d03708.jpg",
-                "https://img1.kakaocdn.net/thumb/C600x600.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220325164122_066983f7d8aa45fb8d8bf81ca5563ab9.jpg"};
+                "https://img1.kakaocdn.net/thumb/C600x600.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220325164122_066983f7d8aa45fb8d8bf81ca5563ab9.jpg",
+                "https://img1.kakaocdn.net/thumb/C276x276.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220127104813_1f8ce3a35c5943b38bf5bea2ad580326.jpg"
+        };
+
+        String[] brands = new String[] {
+                "Apple", "Apple", "삼성전자", "LG전자"
+        };
+
+        String[] names = new String[] {
+                "Apple 아이패드 미니 6세대 WiFi 64GB",
+                "Apple 애플워치 SE 40mm GPS 알루미늄 케이스+스포츠 밴드",
+                "삼성전자 갤럭시탭 S8 SM-X700 WiFi 256GB 패드형 태블릿PC (갤럭시탭S8 Wi-Fi 256GB)",
+                "LG전자 22년형 그램 (40.6cm) 인텔 11세대 i5 새학기 대학생 노트북 (16Z95P-GA5LK)"
+        };
+
+        String[] prices = new String[] {
+                "636,000", "355,000", "979,000", "1,849,000"
+        };
 
         ivMenu = findViewById(R.id.iv_menu);
         go_market = findViewById(R.id.btn_go_market);
@@ -68,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         layoutIndicator = findViewById(R.id.layoutIndicators);
 
         sliderViewPager.setOffscreenPageLimit(1);
-        //sliderViewPager.setAdapter(new ImageSliderAdapter(this, images));
+        sliderViewPager.setAdapter(new ImageSliderAdapter(this, images, brands, names, prices));
 
         sliderViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

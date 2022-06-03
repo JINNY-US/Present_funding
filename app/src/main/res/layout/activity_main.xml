@@ -32,7 +32,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/sliderViewPager"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_marginTop="55dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +53,17 @@
         android:orientation="horizontal"
         android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@id/viewFadingEdge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_go_market"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="마켓으로 가기"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -130,12 +141,6 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
-
-            <Button
-                android:id="@+id/btn_go_market"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:text="마켓으로 가기" />
 
         </LinearLayout>
     </ScrollView>
