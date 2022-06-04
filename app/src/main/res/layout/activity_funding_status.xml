@@ -122,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_lack_price" />
 
     <Button
-        android:id="@+id/btn_fund"
+        android:id="@+id/btn_go_payment"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="77dp"
@@ -144,7 +144,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fund" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_go_payment" />
 
     <Button
         android:id="@+id/btn_fundcancle"

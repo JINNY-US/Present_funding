@@ -6,4 +6,155 @@
     android:layout_height="match_parent"
     tools:context=".MyFundingActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mypage_toolbar4"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/main_orange"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="나의 펀딩"
+        app:titleTextColor="#FFFFFF"
+        tools:menu="@menu/actionbar_actions" />
+
+    <TextView
+        android:id="@+id/txt_myfunding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="127dp"
+        android:text="펀딩 현황"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar4" />
+
+    <ImageView
+        android:id="@+id/iv_myfunding_img"
+        android:layout_width="232dp"
+        android:layout_height="221dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_myfunding"
+        app:srcCompat="@drawable/gift" />
+
+    <TextView
+        android:id="@+id/txt_myachieve_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="166dp"
+        android:layout_marginEnd="167dp"
+        android:text="목표 달성액 : "
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_myfunding_img" />
+
+    <TextView
+        android:id="@+id/txt_myitem_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="181dp"
+        android:layout_marginEnd="181dp"
+        android:text="상품명 : "
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_myachieve_price" />
+
+    <ProgressBar
+        android:id="@+id/my_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="334dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="39dp"
+        android:scaleY="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_myitem_name" />
+
+    <TextView
+        android:id="@+id/txt_mycurrunt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="167dp"
+        android:text="현재 달성액 : "
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_progressBar" />
+
+    <TextView
+        android:id="@+id/txt_lack_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="172dp"
+        android:layout_marginEnd="173dp"
+        android:text="부족 금액 : "
+        android:textColor="#DF3F3F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_mycurrunt_price" />
+
+    <TextView
+        android:id="@+id/txt_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="60dp"
+        android:text="이 펀딩은 -월 -일에 마감되고, -월-일에 결제됩니다."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lack_price" />
+
+    <Button
+        android:id="@+id/btn_myfund"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="78dp"
+        android:text="펀딩 공유하기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_information" />
+
+    <Button
+        android:id="@+id/btn_fund_share"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="78dp"
+        android:text="나에게 펀딩하기"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_myfund" />
+
+    <Button
+        android:id="@+id/btn_myfundcancle"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="78dp"
+        android:text="펀딩 취소하기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fund_share" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
