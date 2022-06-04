@@ -39,7 +39,7 @@ public class FundingOpenActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_funding_open);
 
-
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         btn_date = findViewById(R.id.btn_datepicker); //날찌 선택 버튼
         btn_open = findViewById(R.id.btn_open_funding_final); // 펀딩 오픈 버튼

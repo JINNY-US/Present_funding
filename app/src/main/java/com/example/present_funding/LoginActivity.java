@@ -35,6 +35,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends Activity {
 
+    private BackPressCloseHandler backPressCloseHandler;
+
     Button goJoin, goMain, findPwd;
     EditText Idtxt, Pwdtxt;
     //Firebase에서 계정 정보를 가져오는 객체
@@ -57,6 +59,8 @@ public class LoginActivity extends Activity {
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -170,7 +174,6 @@ public class LoginActivity extends Activity {
         super.onStop();
     }
 
-    private BackPressCloseHandler backPressCloseHandler;
     //뒤로가기 추가
     @Override
     public void onBackPressed() {

@@ -21,6 +21,8 @@ public class FindActivity extends AppCompatActivity implements View.OnClickListe
     EditText eText;
     Button btnfind;
 
+    private BackPressCloseHandler backPressCloseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,8 @@ public class FindActivity extends AppCompatActivity implements View.OnClickListe
         eText = (EditText) findViewById(R.id.eText);
         btnfind = (Button) findViewById(R.id.btnfind);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         btnfind.setOnClickListener(this);
     }
@@ -52,7 +56,7 @@ public class FindActivity extends AppCompatActivity implements View.OnClickListe
                     });
         }
     }
-    private BackPressCloseHandler backPressCloseHandler;
+
     //뒤로가기 추가
     @Override
     public void onBackPressed() {

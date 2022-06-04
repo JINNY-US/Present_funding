@@ -26,6 +26,7 @@ public class MypageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
 
+
         go_profile = findViewById(R.id.btn_my_profile);
         go_funding = findViewById(R.id.btn_my_funding);
         go_wishlist = findViewById(R.id.btn_my_wishlist);

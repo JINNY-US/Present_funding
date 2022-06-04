@@ -46,6 +46,8 @@ public class JoinActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
         //파이어베이스 접근 설정
         // user = firebaseAuth.getCurrentUser();
         firebaseAuth =  FirebaseAuth.getInstance();

@@ -44,16 +44,15 @@ public class MyProfileActivity extends AppCompatActivity {
 
     FirebaseUser user;
 
-    @Override
-    public void onBackPressed() {
-        Back();
-    }
+    private BackPressCloseHandler backPressCloseHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_my_profile);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         setting_cancle_btn = findViewById(R.id.setting_cancel_btn);
         setting_change_btn = findViewById(R.id.setting_change_btn);
@@ -194,5 +193,10 @@ public class MyProfileActivity extends AppCompatActivity {
 
     }
 
+    //뒤로가기 추가
+    @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
 
 }

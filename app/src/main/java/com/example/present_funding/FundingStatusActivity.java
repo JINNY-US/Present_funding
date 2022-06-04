@@ -11,10 +11,14 @@ public class FundingStatusActivity extends AppCompatActivity {
 
     Button go_payment;
 
+    private BackPressCloseHandler backPressCloseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_funding_status);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         go_payment = findViewById(R.id.btn_go_payment);
 
@@ -26,7 +30,6 @@ public class FundingStatusActivity extends AppCompatActivity {
         });
     }
 
-    private BackPressCloseHandler backPressCloseHandler;
     //뒤로가기 추가
     @Override
     public void onBackPressed() {

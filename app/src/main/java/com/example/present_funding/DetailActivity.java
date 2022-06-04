@@ -25,11 +25,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     String send_name, send_price;
 
+    private BackPressCloseHandler backPressCloseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_detail);
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         product_img = findViewById(R.id.iv_img); //상품 이미지
         product_brand = findViewById(R.id.txt_brand); //상품 브랜드
@@ -75,7 +79,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private BackPressCloseHandler backPressCloseHandler;
     //뒤로가기 추가
     @Override
     public void onBackPressed() {
