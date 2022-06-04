@@ -5,35 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mypage_toolbar"
-        android:layout_width="414dp"
-        android:layout_height="55dp"
-        android:background="@color/main_orange"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <ImageView
+        android:id="@+id/toolbarImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="   Fun_P"
-        app:titleTextColor="#FFFFFF"
-        tools:menu="@menu/actionbar_actions" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar">
-
-        <FrameLayout
-            android:id="@+id/main_framelayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="?attr/actionBarSize"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        app:srcCompat="@drawable/ic_action_mypage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

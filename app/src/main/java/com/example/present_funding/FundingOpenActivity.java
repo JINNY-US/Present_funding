@@ -29,6 +29,7 @@ public class FundingOpenActivity extends AppCompatActivity {
 
     String get_name, get_price;
     private int Month, Day;
+    private int Collection;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -72,13 +73,15 @@ public class FundingOpenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                FundingUpload(get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText());
+                Collection = 0;
+                FundingUpload(get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection);
 
             }
 
-            private void FundingUpload(String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail) {
+            private void FundingUpload(String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
+                    Toast.makeText(FundingOpenActivity.this , "펀딩 오픈 성공!", Toast.LENGTH_LONG).show();
 
                     String uid = user.getUid();
 
@@ -91,12 +94,13 @@ public class FundingOpenActivity extends AppCompatActivity {
                     funding.put("day", String.valueOf(day));
                     funding.put("addr", String.valueOf(addr));
                     funding.put("addr_detail", String.valueOf(addr_detail));
+                    funding.put("collection", String.valueOf(collection));
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference userRef = database.getReference("Funding");
                     userRef.child(uid).setValue(funding);
 
-                    Intent intent2 = new Intent(FundingOpenActivity.this, MainActivity.class);
+                    Intent intent2 = new Intent(FundingOpenActivity.this, MyFundingActivity.class);
                     startActivity(intent2);
 
                 } else {
