@@ -10,6 +10,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.Serializable;
+
 public class MyFundingActivity extends AppCompatActivity {
 
     private ImageView iv_myfunding;
@@ -17,6 +23,9 @@ public class MyFundingActivity extends AppCompatActivity {
     private ProgressBar my_progressBar;
     private Button btn_fund_share, btn_myfundcancle;
     private BackPressCloseHandler backPressCloseHandler;
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,10 @@ public class MyFundingActivity extends AppCompatActivity {
 
         btn_fund_share = findViewById(R.id.btn_fund_share); // 펀딩 공유하기
         btn_myfundcancle = findViewById(R.id.btn_myfundcancle); // 펀딩 취소하기
+
+        Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
+        Serializable p_img = intent.getSerializableExtra("img"); // 이미지 가져오기
+        Glide.with(this).load(p_img).into(iv_myfunding); // 이미지 적용
 
 
         //펀딩 공유하기

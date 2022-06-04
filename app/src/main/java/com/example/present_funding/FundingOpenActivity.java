@@ -14,11 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 public class FundingOpenActivity extends AppCompatActivity {
@@ -27,7 +29,7 @@ public class FundingOpenActivity extends AppCompatActivity {
     private TextView txt_prod_price, txt_prod_name, txt_choicedate;
     private EditText txt_addr_detail, txt_addr;
 
-    String get_name, get_price;
+    String get_name, get_price, get_img;
     private int Month, Day;
     private int Collection;
 
@@ -54,6 +56,7 @@ public class FundingOpenActivity extends AppCompatActivity {
 
         get_name = intent.getStringExtra("send_name");
         get_price = intent.getStringExtra("send_price");
+        get_img = intent.getStringExtra("img");
 
         if(get_name != null && get_price != null) {
             txt_prod_name.setText(get_name); // 이름 태그에서 이름 불러오기
@@ -101,6 +104,7 @@ public class FundingOpenActivity extends AppCompatActivity {
                     userRef.child(uid).setValue(funding);
 
                     Intent intent2 = new Intent(FundingOpenActivity.this, MyFundingActivity.class);
+                    intent2.putExtra("send_img", get_img);
                     startActivity(intent2);
 
                 } else {
