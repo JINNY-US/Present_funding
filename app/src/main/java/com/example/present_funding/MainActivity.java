@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = MainActivity.class.getSimpleName();
 
     private ImageView ivMenu;
-    private Button go_market;
+    private Button go_market, go_opened_funding;
 
     //private FirebaseAuth firebaseAuth;
     //DatabaseReference mDatabase;
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         ivMenu = findViewById(R.id.iv_menu);
         go_market = findViewById(R.id.btn_go_market);
+        go_opened_funding = findViewById(R.id.btn_view_funding);
 
         sliderViewPager = findViewById(R.id.sliderViewPager);
         layoutIndicator = findViewById(R.id.layoutIndicators);
@@ -214,6 +215,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplication(), MarketActivity.class));
+            }
+        });
+
+        go_opened_funding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), OpenedFundingActivity.class));
             }
         });
     }

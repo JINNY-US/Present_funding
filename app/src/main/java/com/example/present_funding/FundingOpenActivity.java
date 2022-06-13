@@ -29,7 +29,7 @@ public class FundingOpenActivity extends AppCompatActivity {
     private TextView txt_prod_price, txt_prod_name, txt_choicedate;
     private EditText txt_addr_detail, txt_addr;
 
-    String get_name, get_price, get_img;
+    String get_name, get_price, get_img, get_brand;
     private int Month, Day;
     private int Collection;
 
@@ -56,7 +56,8 @@ public class FundingOpenActivity extends AppCompatActivity {
 
         get_name = intent.getStringExtra("send_name");
         get_price = intent.getStringExtra("send_price");
-        get_img = intent.getStringExtra("img");
+        get_img = intent.getStringExtra("send_img");
+        get_img = intent.getStringExtra("send_brand");
 
         if(get_name != null && get_price != null) {
             txt_prod_name.setText(get_name); // 이름 태그에서 이름 불러오기
@@ -77,11 +78,11 @@ public class FundingOpenActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Collection = 0;
-                FundingUpload(get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection);
+                FundingUpload(get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection);
 
             }
 
-            private void FundingUpload(String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection) {
+            private void FundingUpload(String get_img, String get_brand, String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     Toast.makeText(FundingOpenActivity.this , "펀딩 오픈 성공!", Toast.LENGTH_LONG).show();
@@ -91,6 +92,8 @@ public class FundingOpenActivity extends AppCompatActivity {
                     HashMap<Object, String> funding = new HashMap<>();
 
                     funding.put("uid", uid);
+                    funding.put("prod_img", get_img);
+                    funding.put("prod_brand", get_brand);
                     funding.put("prod_name", get_name);
                     funding.put("prod_price", get_price);
                     funding.put("month", String.valueOf(month));

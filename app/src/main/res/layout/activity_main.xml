@@ -217,6 +217,17 @@
 
 
             <Button
+                android:id="@+id/btn_view_funding"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="오픈된 펀딩 보러가기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_second_third"
+                />
+
+            <Button
                 android:id="@+id/btn_go_market"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
@@ -224,7 +235,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_second_third"
+                app:layout_constraintTop_toBottomOf="@+id/btn_view_funding"
                 tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

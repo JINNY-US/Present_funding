@@ -23,7 +23,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ImageButton wish_onoff;
     boolean i = false;
 
-    String send_name, send_price, send_img;
+    String send_name, send_price, send_img, send_brand;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -48,8 +48,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         send_name = intent.getStringExtra("name");
         send_price = intent.getStringExtra("price");
         send_img = intent.getStringExtra("img");
+        send_brand = intent.getStringExtra("brand");
 
-        product_brand.setText(intent.getStringExtra("brand")); // 브랜드 태그에서 브랜드 불러오기
+        product_brand.setText(send_brand); // 브랜드 태그에서 브랜드 불러오기
         product_name.setText(send_name); // 이름 태그에서 이름 불러오기
         product_price.setText(send_price); // 가격 태그에서 가격 불러오기
         Serializable p_img = intent.getSerializableExtra("img"); // 이미지 가져오기
@@ -77,6 +78,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         intent2.putExtra("send_name", send_name);
         intent2.putExtra("send_price", send_price);
         intent2.putExtra("send_img", send_img);
+        intent2.putExtra("send_brand", send_brand);
         startActivity(intent2);
 
     }
