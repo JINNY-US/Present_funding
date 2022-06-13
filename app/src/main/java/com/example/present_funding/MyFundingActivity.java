@@ -1,16 +1,23 @@
 package com.example.present_funding;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,6 +30,9 @@ public class MyFundingActivity extends AppCompatActivity {
     private ProgressBar my_progressBar;
     private Button btn_fund_share, btn_myfundcancle;
     private BackPressCloseHandler backPressCloseHandler;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+    SharedPreferences.Editor editor;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -32,6 +42,9 @@ public class MyFundingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_my_funding);
+
+        SharedPreferences sharedPreferences= getSharedPreferences("sFile", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 
@@ -58,7 +71,7 @@ public class MyFundingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //intent함수를 통해 register액티비티 함수를 호출한다.
-                startActivity(new Intent(getApplication(), JoinActivity.class)); //펀딩 공유의 건에 대한 아이디어 필요!!!!!!!!!!!!!!!!!!!!!
+                //startActivity(new Intent(getApplication(), JoinActivity.class)); //펀딩 공유의 건에 대한 아이디어 필요!!!!!!!!!!!!!!!!!!!!!
 
             }
         });
@@ -74,6 +87,44 @@ public class MyFundingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //펀딩 취소 함수
+    public void fundingCancle(View view) {
+        AlertDialog.Builder alt_bld = new AlertDialog.Builder(view.getContext());
+        alt_bld.setMessage("펀딩을 취소하시겠습니까?").setCancelable(false)
+                .setPositiveButton("네",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {           // 펀딩을 취소하게 되었을 때, db에서 펀딩에 대한 내용을 삭제하는 코드 필요
+                                //firebaseAuth.signOut();
+                                editor.clear();
+                                editor.commit();
+                                Intent intent = new Intent(MyFundingActivity.this, MypageActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).setNegativeButton("아니오",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        AlertDialog alert = alt_bld.create();
+
+        //대화창 클릭 시 뒷 배경 어두워지는 것 막기
+        alert.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+        //대화창 제목 설정
+        alert.setTitle("펀딩 취소");
+
+        //대화창 아이콘 설정
+        alert.setIcon(R.drawable.exclamation);
+
+        //대화창 배경 색 설정
+        alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(180, 180, 180)));
+        alert.show();
     }
 
     //뒤로가기 추가
