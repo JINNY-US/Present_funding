@@ -127,9 +127,14 @@ public class MyFundingActivity extends AppCompatActivity {
         alert.show();
     }
 
-    //뒤로가기 추가
+    //뒤로가기 시 마이페이지로 이동
     @Override
     public void onBackPressed() {
-        backPressCloseHandler.onBackPressed();
+        //super.onBackPressed();
+        Intent intent;
+        intent = new Intent(getApplication(), MypageActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }
