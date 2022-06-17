@@ -40,11 +40,11 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
     @Override
     public void onBindViewHolder(@NonNull FundingViewHolder holder, int position) {
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getImg())
+                .load(arrayList.get(position).getProd_img())
                 .into(holder.pd_img);
-        holder.pd_brand.setText(arrayList.get(position).getBrand());
-        holder.pd_name.setText(arrayList.get(position).getName());
-        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice())+" 원");
+        holder.pd_brand.setText(arrayList.get(position).getUname()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
+        holder.pd_name.setText(arrayList.get(position).getProd_name());
+        holder.pd_price.setText(String.valueOf(arrayList.get(position).getProd_price())+" 원");
     }
 
     @Override
@@ -73,10 +73,10 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
                     if(pos != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
 
-                        intent.putExtra("brand", arrayList.get(pos).getBrand());      // pos에 맞는 데이터의 브랜드값을 전송
-                        intent.putExtra("name", arrayList.get(pos).getName());      // pos에 맞는 데이터의 이름값을 전송
-                        intent.putExtra("price", arrayList.get(pos).getPrice());        // pos에 맞는 데이터의 가격값을 전송
-                        intent.putExtra("img", arrayList.get(pos).getImg());        // pos에 맞는 데이터의 이미지값을 전송
+                        intent.putExtra("brand", arrayList.get(pos).getUname());      // pos에 맞는 데이터의 호스트 이름값을 전송
+                        intent.putExtra("name", arrayList.get(pos).getProd_name());      // pos에 맞는 데이터의 이름값을 전송
+                        intent.putExtra("price", arrayList.get(pos).getProd_price());        // pos에 맞는 데이터의 가격값을 전송
+                        intent.putExtra("img", arrayList.get(pos).getProd_img());        // pos에 맞는 데이터의 이미지값을 전송
 
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }

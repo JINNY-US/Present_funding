@@ -34,7 +34,7 @@ public class MyProfileActivity extends AppCompatActivity {
     Button setting_cancle_btn, setting_change_btn;
     TextView setting_id_before;
     EditText editTextTextPersonName4, setting_pass, setting_pass_check;
-    String userType, uid;
+    String uid;
 
     private FirebaseAuth firebaseAuth;
 
@@ -72,7 +72,6 @@ public class MyProfileActivity extends AppCompatActivity {
                 if(uid != null){
                     setting_id_before.setText(snapshot.child("email").getValue(String.class));
                     editTextTextPersonName4.setText(snapshot.child("name").getValue(String.class));
-                    userType = snapshot.child("userType").getValue(String.class);
                 }else {
                     Toast.makeText(MyProfileActivity.this, "회원정보를 불러올수가 없습니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -101,7 +100,7 @@ public class MyProfileActivity extends AppCompatActivity {
                     if(password.equals(password_check)) {
                         HashMap<String, Object> childUpdates = new HashMap<>();
 
-                        UserInfo userInfo = new UserInfo(email, password, uid, name, userType);
+                        UserInfo userInfo = new UserInfo(email, password, uid, name);
                         Map<String, Object> userValue = userInfo.toMap();
                         user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
 
@@ -143,6 +142,9 @@ public class MyProfileActivity extends AppCompatActivity {
             this.password = password;
             this.uid = uid;
             this.name = name;
+        }
+
+        public UserInfo(String email, String password, String uid, String name) {
         }
 
         public Map<String, Object> toMap() {

@@ -2,10 +2,13 @@ package com.example.present_funding;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -17,10 +20,18 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 
 public class FundingOpenActivity extends AppCompatActivity {
@@ -29,11 +40,18 @@ public class FundingOpenActivity extends AppCompatActivity {
     private TextView txt_prod_price, txt_prod_name, txt_choicedate;
     private EditText txt_addr_detail, txt_addr;
 
-    String get_name, get_price, get_img, get_brand;
+    String get_name, get_price, get_img, get_brand, host_name;
     private int Month, Day;
     private int Collection;
 
     private BackPressCloseHandler backPressCloseHandler;
+
+    private FirebaseAuth firebaseAuth;
+
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    DatabaseReference mDatabase;
+    FirebaseUser user;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +71,24 @@ public class FundingOpenActivity extends AppCompatActivity {
         txt_addr_detail = findViewById(R.id.txt_addr_detail); //상세 주소 입력창
 
         Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
+        uid = user != null ? user.getUid() : null;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Users").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(uid != null){
+                    host_name = snapshot.child("name").getValue(String.class);
+                }else {
+                    Toast.makeText(FundingOpenActivity.this, "오류가 발생했습니다. 다시 시도 해주십시오.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
 
         get_name = intent.getStringExtra("send_name");
         get_price = intent.getStringExtra("send_price");
@@ -78,20 +114,20 @@ public class FundingOpenActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Collection = 0;
-                FundingUpload(get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection);
+                FundingUpload(host_name, get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection);
 
             }
 
-            private void FundingUpload(String get_img, String get_brand, String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection) {
+            private void FundingUpload(String host_name, String get_img, String get_brand, String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(FundingOpenActivity.this , "펀딩 오픈 성공!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(FundingOpenActivity.this , "펀딩이 성공적으로 오픈되었습니다!", Toast.LENGTH_LONG).show();
 
                     String uid = user.getUid();
 
                     HashMap<Object, String> funding = new HashMap<>();
 
-                    funding.put("uid", uid);
+                    funding.put("host_name", host_name);
                     funding.put("prod_img", get_img);
                     funding.put("prod_brand", get_brand);
                     funding.put("prod_name", get_name);
@@ -108,6 +144,7 @@ public class FundingOpenActivity extends AppCompatActivity {
 
                     Intent intent2 = new Intent(FundingOpenActivity.this, MyFundingActivity.class);
                     intent2.putExtra("send_img", get_img);
+                    intent2.putExtra("host_name", host_name);
                     startActivity(intent2);
 
                 } else {

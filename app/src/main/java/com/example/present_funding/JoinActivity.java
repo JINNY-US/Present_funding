@@ -144,7 +144,7 @@ public class JoinActivity extends Activity {
                     String password = pwd;
                     String uid = user.getUid();
                     String name = Name;
-                    String init_set = "false"; // 셀러 초기 확인
+                    //String init_set = "false"; // 셀러 초기 확인
 
                     //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
                     HashMap<Object, String> userInfo = new HashMap<>();
@@ -153,19 +153,19 @@ public class JoinActivity extends Activity {
                     userInfo.put("email", email);
                     userInfo.put("password", password);
                     userInfo.put("name", name);
-                    userInfo.put("init_set", init_set);
+                    //userInfo.put("init_set", init_set);
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    /*DatabaseReference userRef = database.getReference("Users");
+                    DatabaseReference userRef = database.getReference("Users");
                     userRef.child(uid).setValue(userInfo);
 
                     HashMap<Object, String> storeInfo = new HashMap<>();
-                    HashMap<Object, String> userInfo_ = new HashMap<>();
+                    //HashMap<Object, String> userInfo_ = new HashMap<>();
 
-                    storeInfo.put("uid", uid);*/
+                    storeInfo.put("uid", uid);
 
-                    //DatabaseReference storeRef = database.getReference("StoreInfo");
-                    //storeRef.child(uid).setValue(storeInfo);
+                    DatabaseReference storeRef = database.getReference("StoreInfo");
+                    storeRef.child(uid).setValue(storeInfo);
 
                     //가입이 이루어졌을 시 가입 화면을 빠져나감
                     firebaseAuth.signOut();
