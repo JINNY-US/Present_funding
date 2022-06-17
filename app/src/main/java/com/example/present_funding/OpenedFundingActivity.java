@@ -26,7 +26,6 @@ public class OpenedFundingActivity extends AppCompatActivity {
     private ArrayList<Funding> arrayList; // 상품 정보 저장할 리스트
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    //private ImageView ivMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +33,9 @@ public class OpenedFundingActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_opened_funding);
 
-//        ivMenu = findViewById(R.id.iv_menu);
-//        ivMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplication(), MypageActivity.class));
-//            }
-//        });
-
-
         layoutManager = new LinearLayoutManager(this);
 
-        recyclerView = findViewById(R.id.re_market_items);
+        recyclerView = findViewById(R.id.re_opened_items);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 

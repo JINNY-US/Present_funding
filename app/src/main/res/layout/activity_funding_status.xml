@@ -7,7 +7,7 @@
     tools:context=".FundingStatusActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mypage_toolbar4"
+        android:id="@+id/toolbar_status"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@color/main_orange"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="친구에게 펀딩"
+        app:title="펀딩 후원하기"
         app:titleTextColor="#FFFFFF"
         tools:menu="@menu/actionbar_actions" />
 
@@ -33,7 +33,7 @@
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar4" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_status" />
 
     <ImageView
         android:id="@+id/iv_funding_img"

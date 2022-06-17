@@ -1,5 +1,6 @@
 package com.example.present_funding;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,18 +16,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 
 public class MyFundingActivity extends AppCompatActivity {
 
     private ImageView iv_myfunding;
-    private TextView txt_product_price, txt_product_name, txt_mycurrunt_price, txt_lack_price, txt_information;
+    private TextView txt_product_price, txt_product_name, txt_mycurrunt_price, txt_lack_price, txt_information, txt_myfunding;
     private ProgressBar my_progressBar;
     private Button btn_fund_share, btn_myfundcancle;
     private BackPressCloseHandler backPressCloseHandler;
@@ -36,6 +42,11 @@ public class MyFundingActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    DatabaseReference mDatabase;
+    FirebaseUser user;
+    String uid, my_name, my_img, my_price, my_collection, my_month, my_day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +59,14 @@ public class MyFundingActivity extends AppCompatActivity {
 
         backPressCloseHandler = new BackPressCloseHandler(this);
 
+        txt_myfunding = findViewById(R.id.txt_myfunding);
         iv_myfunding = findViewById(R.id.iv_myfunding_img); //펀딩을 진행하는 이미지 필요
         txt_product_price = findViewById(R.id.txt_myachieve_price); //목표 달성액
         txt_product_name = findViewById(R.id.txt_myitem_name); //상품명
         txt_mycurrunt_price = findViewById(R.id.txt_mycurrunt_price); //현재 달성액 -> 이건 collection 데이터 불러오면 될듯
         txt_lack_price = findViewById(R.id.txt_lack_price); //부족한 금액 = 목표-현재
-        my_progressBar = findViewById(R.id.my_progressBar); // 진행 그래프?
+
+        //ProgressBar my_progressBar = (ProgressBar) findViewById(R.id.my_progressBar); // 진행 그래프?
 
         txt_information = findViewById(R.id.txt_information); // 이 펀딩은 -월 -일에 마감되고, -월-일에 결제됩니다.
 
@@ -61,9 +74,44 @@ public class MyFundingActivity extends AppCompatActivity {
         btn_myfundcancle = findViewById(R.id.btn_myfundcancle); // 펀딩 취소하기
 
         Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
-        Serializable p_img = intent.getSerializableExtra("img"); // 이미지 가져오기
-        Glide.with(this).load(p_img).into(iv_myfunding); // 이미지 적용
 
+        user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
+        uid = user != null ? user.getUid() : null;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Funding").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(uid != null){
+                    txt_myfunding.setText(snapshot.child("host_name").getValue(String.class)+"님의 펀딩 현황");
+                    my_img = snapshot.child("prod_img").getValue(String.class);
+                    my_price = snapshot.child("prod_price").getValue(String.class);
+                    my_collection = snapshot.child("collection").getValue(String.class);
+                    my_month = snapshot.child("month").getValue(String.class);
+                    my_day = snapshot.child("day").getValue(String.class);
+
+                    Glide.with(iv_myfunding).load(my_img).into(iv_myfunding); // 이미지 적용
+
+                    txt_product_price.setText("목표 달성액: "+my_price+" 원");
+                    txt_mycurrunt_price.setText("현재 달성액: "+my_collection+" 원");
+
+                    int int_price = Integer.parseInt(my_price.replaceAll("[\\D]", ""));
+                    int int_collection = Integer.parseInt(my_collection.replaceAll("[\\D]", ""));
+
+                    int lack_money = int_price - int_collection;
+                    //int collect_percent = int_price / int_collection;
+
+                    txt_lack_price.setText("부족 금액: "+lack_money+" 원");
+                    //my_progressBar.setProgress(collect_percent);
+
+                    txt_information.setText("이 펀딩은 "+my_month+"월 "+my_day+"일에 마감됩니다.");
+                }else {
+                    Toast.makeText(MyFundingActivity.this, "오류가 발생했습니다. 다시 시도 해주십시오.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
 
         //펀딩 공유하기
         btn_fund_share.setOnClickListener(new View.OnClickListener() {

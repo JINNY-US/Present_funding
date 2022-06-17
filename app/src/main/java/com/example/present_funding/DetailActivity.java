@@ -83,9 +83,14 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    //뒤로가기 추가
+    //뒤로가기 시 메인페이지로 이동
     @Override
     public void onBackPressed() {
-        backPressCloseHandler.onBackPressed();
+        //super.onBackPressed();
+        Intent intent;
+        intent = new Intent(getApplication(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

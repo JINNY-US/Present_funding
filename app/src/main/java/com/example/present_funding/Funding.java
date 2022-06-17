@@ -1,7 +1,7 @@
 package com.example.present_funding;
 
 public class Funding {
-    private String addr, addr_detail, collection, day, month, prod_img, prod_name, prod_price, uid, uname;
+    private String addr, addr_detail, collection, day, month, prod_img, prod_name, prod_price, uid, host_name;
 
     public Funding() {
     }
@@ -78,11 +78,11 @@ public class Funding {
         this.uid = uid;
     }
 
-    public String getUname() {
-        return uname;
+    public String getHost_name() {
+        return host_name;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setHost_name(String uname) {
+        this.host_name = uname;
     }
 }

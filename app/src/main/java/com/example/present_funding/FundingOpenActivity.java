@@ -93,7 +93,7 @@ public class FundingOpenActivity extends AppCompatActivity {
         get_name = intent.getStringExtra("send_name");
         get_price = intent.getStringExtra("send_price");
         get_img = intent.getStringExtra("send_img");
-        get_img = intent.getStringExtra("send_brand");
+        get_brand = intent.getStringExtra("send_brand");
 
         if(get_name != null && get_price != null) {
             txt_prod_name.setText(get_name); // 이름 태그에서 이름 불러오기
@@ -143,8 +143,12 @@ public class FundingOpenActivity extends AppCompatActivity {
                     userRef.child(uid).setValue(funding);
 
                     Intent intent2 = new Intent(FundingOpenActivity.this, MyFundingActivity.class);
-                    intent2.putExtra("send_img", get_img);
-                    intent2.putExtra("host_name", host_name);
+//                    intent2.putExtra("send_img", get_img);
+//                    intent2.putExtra("send_price", get_price);
+//                    intent2.putExtra("send_hostname", host_name);
+//                    intent2.putExtra("send_collection", String.valueOf(collection));
+//                    intent2.putExtra("send_month", String.valueOf(month));
+//                    intent2.putExtra("send_day", String.valueOf(day));
                     startActivity(intent2);
 
                 } else {
@@ -186,10 +190,15 @@ public class FundingOpenActivity extends AppCompatActivity {
             }
     );
 
-    // 뒤로가기 추가
+    //뒤로가기 시 메인페이지로 이동
     @Override
     public void onBackPressed() {
-        backPressCloseHandler.onBackPressed();
+        //super.onBackPressed();
+        Intent intent;
+        intent = new Intent(getApplication(), DetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
 }

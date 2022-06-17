@@ -42,7 +42,7 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getProd_img())
                 .into(holder.pd_img);
-        holder.pd_brand.setText(arrayList.get(position).getUname()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
+        holder.pd_hostname.setText(arrayList.get(position).getHost_name()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
         holder.pd_name.setText(arrayList.get(position).getProd_name());
         holder.pd_price.setText(String.valueOf(arrayList.get(position).getProd_price())+" 원");
     }
@@ -56,12 +56,12 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
     public class FundingViewHolder extends RecyclerView.ViewHolder {
 
         ImageView pd_img;
-        TextView pd_brand, pd_name, pd_price;
+        TextView pd_hostname, pd_name, pd_price;
 
         public FundingViewHolder(@NonNull View itemView) {
             super(itemView);
             this.pd_img = itemView.findViewById(R.id.img_product_image);
-            this.pd_brand = itemView.findViewById(R.id.txt_product_brand);
+            this.pd_hostname = itemView.findViewById(R.id.txt_product_brand);
             this.pd_name = itemView.findViewById(R.id.txt_product_name);
             this.pd_price = itemView.findViewById(R.id.txt_product_price);
 
@@ -71,9 +71,9 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
                 public void onClick(View view) {
                     int pos = getAdapterPosition();                     // pos = 0, 1, 2...이런 식으로 index값을 가져와서 데이터를 전송함
                     if(pos != RecyclerView.NO_POSITION) {
-                        Intent intent = new Intent(context, DetailActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
+                        Intent intent = new Intent(context, FundingStatusActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
 
-                        intent.putExtra("brand", arrayList.get(pos).getUname());      // pos에 맞는 데이터의 호스트 이름값을 전송
+                        intent.putExtra("host_name", arrayList.get(pos).getHost_name());      // pos에 맞는 데이터의 호스트 이름값을 전송
                         intent.putExtra("name", arrayList.get(pos).getProd_name());      // pos에 맞는 데이터의 이름값을 전송
                         intent.putExtra("price", arrayList.get(pos).getProd_price());        // pos에 맞는 데이터의 가격값을 전송
                         intent.putExtra("img", arrayList.get(pos).getProd_img());        // pos에 맞는 데이터의 이미지값을 전송
