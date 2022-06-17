@@ -195,7 +195,7 @@ public class FundingOpenActivity extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         Intent intent;
-        intent = new Intent(getApplication(), DetailActivity.class);
+        intent = new Intent(getApplication(), MarketActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

@@ -34,6 +34,7 @@ public class FundingStatusActivity extends AppCompatActivity {
     //뒤로가기 추가
     @Override
     public void onBackPressed() {
-        backPressCloseHandler.onBackPressed();
+        super.onBackPressed();
+        //backPressCloseHandler.onBackPressed();
     }
 }
