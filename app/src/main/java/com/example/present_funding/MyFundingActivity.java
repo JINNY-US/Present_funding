@@ -33,7 +33,7 @@ import java.util.Random;
 public class MyFundingActivity extends AppCompatActivity {
 
     private ImageView iv_myfunding;
-    private TextView txt_product_price, txt_product_name, txt_mycurrunt_price, txt_lack_price, txt_information, txt_myfunding;
+    private TextView txt_product_price, txt_product_name, txt_mycurrunt_price, txt_lack_price, txt_information, txt_myfunding, txt_myitem_name;
     private ProgressBar my_progressBar;
     private Button btn_fund_share, btn_myfundcancle;
     private BackPressCloseHandler backPressCloseHandler;
@@ -47,7 +47,7 @@ public class MyFundingActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     DatabaseReference mDatabase;
     FirebaseUser user;
-    String uid, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid;
+    String uid, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid, my_prod_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class MyFundingActivity extends AppCompatActivity {
         txt_product_name = findViewById(R.id.txt_myitem_name); //상품명
         txt_mycurrunt_price = findViewById(R.id.txt_mycurrunt_price); //현재 달성액 -> 이건 collection 데이터 불러오면 될듯
         txt_lack_price = findViewById(R.id.txt_lack_price); //부족한 금액 = 목표-현재
+        txt_myitem_name = findViewById(R.id.txt_myitem_name);
 
         //ProgressBar my_progressBar = (ProgressBar) findViewById(R.id.my_progressBar); // 진행 그래프?
 
@@ -79,22 +80,25 @@ public class MyFundingActivity extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
         uid = user != null ? user.getUid() : null;
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Funding").child(uid).addValueEventListener(new ValueEventListener() {
+        mDatabase.child("Fundings").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(uid != null){
                     txt_myfunding.setText(snapshot.child("host_name").getValue(String.class)+"님의 펀딩 현황");
-                    my_img = snapshot.child("prod_img").getValue(String.class);
-                    my_price = snapshot.child("prod_price").getValue(String.class);
+                    my_img = snapshot.child("img").getValue(String.class);
+                    my_prod_name = snapshot.child("name").getValue(String.class);
+                    my_price = snapshot.child("price").getValue(String.class);
                     my_collection = snapshot.child("collection").getValue(String.class);
                     my_month = snapshot.child("month").getValue(String.class);
                     my_day = snapshot.child("day").getValue(String.class);
                     my_fid = snapshot.child("fid").getValue(String.class);
 
+                    txt_myitem_name.setText("상품명: " + my_prod_name);
+
                     Glide.with(iv_myfunding).load(my_img).into(iv_myfunding); // 이미지 적용
 
-                    txt_product_price.setText("목표 달성액: "+my_price+" 원");
-                    txt_mycurrunt_price.setText("현재 달성액: "+my_collection+" 원");
+                    txt_product_price.setText("목표 달성액: " + my_price);
+                    txt_mycurrunt_price.setText("현재 달성액: " + my_collection + " 원");
 
                     int int_price = Integer.parseInt(my_price.replaceAll("[\\D]", ""));
                     int int_collection = Integer.parseInt(my_collection.replaceAll("[\\D]", ""));

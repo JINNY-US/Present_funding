@@ -43,7 +43,7 @@ public class FundingOpenActivity extends AppCompatActivity {
 
     String get_name, get_price, get_img, get_brand, host_name, fid;
     private int Month, Day;
-    private int Collection;
+    private int collection;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -114,36 +114,36 @@ public class FundingOpenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Collection = 0;
-                FundingUpload(host_name, get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection, fid);
+                collection = 0;
+                FundingUpload(host_name, get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), collection, fid, uid);
 
             }
 
-            private void FundingUpload(String host_name, String get_img, String get_brand, String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection, String fid) {
+            private void FundingUpload(String host_name, String img, String brand, String name, String price, int month, int day, Editable addr, Editable addr_detail, int collection, String fid, String uid) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     Toast.makeText(FundingOpenActivity.this , "펀딩이 성공적으로 오픈되었습니다!", Toast.LENGTH_LONG).show();
 
-                    String uid = user.getUid();
+                    uid = user.getUid();
                     fid = random();
 
                     HashMap<Object, String> funding = new HashMap<>();
 
+                    funding.put("uid", uid);
+                    funding.put("fid", fid);
                     funding.put("host_name", host_name);
-                    funding.put("prod_img", get_img);
-                    funding.put("prod_brand", get_brand);
-                    funding.put("prod_name", get_name);
-                    funding.put("prod_price", get_price);
-                    funding.put("month", String.valueOf(month));
-                    funding.put("day", String.valueOf(day));
+                    funding.put("img", get_img);
+                    funding.put("brand", get_brand);
+                    funding.put("name", get_name);
+                    funding.put("price", get_price);
                     funding.put("addr", String.valueOf(addr));
                     funding.put("addr_detail", String.valueOf(addr_detail));
+                    funding.put("month", String.valueOf(month));
+                    funding.put("day", String.valueOf(day));
                     funding.put("collection", String.valueOf(collection));
-                    funding.put("fid", fid);
-                    funding.put("uid", uid);
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference userRef = database.getReference("Funding");
+                    DatabaseReference userRef = database.getReference("Fundings");
                     userRef.child(uid).setValue(funding);
 
                     Intent intent2 = new Intent(FundingOpenActivity.this, MyFundingActivity.class);
@@ -168,7 +168,7 @@ public class FundingOpenActivity extends AppCompatActivity {
     public static String random() {
         Random generator = new Random();
         StringBuilder randomStringBuilder = new StringBuilder();
-        int randomLength = (generator.nextInt(96) + 32);
+        int randomLength = (generator.nextInt(48) + 32);
         char tempChar;
         for (int i = 0; i < randomLength; i++){
             tempChar = (char) (generator.nextInt(96) + 32);

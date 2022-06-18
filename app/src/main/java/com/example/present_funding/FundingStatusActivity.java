@@ -19,7 +19,6 @@ public class FundingStatusActivity extends AppCompatActivity {
     Button go_payment;
     TextView txt_funding_host, txt_achieve_price, txt_item_name, txt_currunt_price, txt_lack_price, txt_deadline_info;
     ImageView iv_funding_img;
-    ProgressBar progressBar;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -42,17 +41,17 @@ public class FundingStatusActivity extends AppCompatActivity {
         txt_lack_price = findViewById(R.id.txt_lack_price);     // 부족 금액:
         txt_deadline_info = findViewById(R.id.txt_deadline_info);   // 이 펀딩은 ~월 ~일에 마감됩니다.
         iv_funding_img = findViewById(R.id.iv_funding_img);
-        //ProgressBar status_progressBar = (ProgressBar) findViewById(R.id.progressBar); // 진행 그래프?
+        ProgressBar status_progressBar = (ProgressBar) findViewById(R.id.progressBar); // 진행 그래프?
 
+        get_uid = intent.getStringExtra("uid");
+        get_fid = intent.getStringExtra("fid");
         get_host_name = intent.getStringExtra("host_name");
+        get_prod_img = intent.getStringExtra("img");
         get_prod_name = intent.getStringExtra("name");
         get_prod_price = intent.getStringExtra("price");
-        get_prod_img = intent.getStringExtra("img");
-        get_collection = intent.getStringExtra("collection");
         get_month = intent.getStringExtra("month");
         get_day = intent.getStringExtra("day");
-        get_fid = intent.getStringExtra("fid");
-        get_uid = intent.getStringExtra("uid");
+        get_collection = intent.getStringExtra("collection");
 
         int int_price = Integer.parseInt(get_prod_price.replaceAll("[\\D]", ""));
         int int_collection = Integer.parseInt(get_collection.replaceAll("[\\D]", ""));
@@ -75,7 +74,6 @@ public class FundingStatusActivity extends AppCompatActivity {
         go_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getApplication(), FundingPaymentActivity.class));
                 Intent intent2 = new Intent(getApplication(), FundingPaymentActivity.class); // 데이터를 전송할 activity 설정
                 intent2.putExtra("send_host_name", get_host_name);
                 intent2.putExtra("send_name", get_prod_name);
@@ -84,20 +82,6 @@ public class FundingStatusActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
-//        go_payment.setOnClickListener((View.OnClickListener) this);
-//        @Override
-//        public void onClick(View view) {
-//            Intent intent2 = new Intent(this, FundingOpenActivity.class); // 데이터를 전송할 activity 설정
-//            intent2.putExtra("send_name", send_name);
-//            intent2.putExtra("send_price", send_price);
-//            intent2.putExtra("send_img", send_img);
-//            intent2.putExtra("send_brand", send_brand);
-//            startActivity(intent2);
-//
-//        }
-
-
     }
 
     //뒤로가기 추가

@@ -2,11 +2,9 @@ package com.example.present_funding;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,10 +18,10 @@ import java.util.ArrayList;
 public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingViewHolder> {  //<FundingAdapter.ProductViewHolder>
 
 
-    private ArrayList<Funding> arrayList;
+    private ArrayList<Fundings> arrayList;
     private Context context;
 
-    public FundingAdapter(ArrayList<Funding> arrayList, Context context) {
+    public FundingAdapter(ArrayList<Fundings> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -40,11 +38,11 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
     @Override
     public void onBindViewHolder(@NonNull FundingViewHolder holder, int position) {
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getProd_img())
+                .load(arrayList.get(position).getImg())
                 .into(holder.pd_img);
         holder.pd_hostname.setText(arrayList.get(position).getHost_name()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
-        holder.pd_name.setText(arrayList.get(position).getProd_name());
-        holder.pd_price.setText(String.valueOf(arrayList.get(position).getProd_price())+" 원");
+        holder.pd_name.setText(arrayList.get(position).getName());
+        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice())+" 원");
     }
 
     @Override
@@ -73,15 +71,16 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
                     if(pos != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(context, FundingStatusActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
 
-                        intent.putExtra("host_name", arrayList.get(pos).getHost_name());      // pos에 맞는 데이터의 호스트 이름값을 전송
-                        intent.putExtra("name", arrayList.get(pos).getProd_name());      // pos에 맞는 데이터의 이름값을 전송
-                        intent.putExtra("price", arrayList.get(pos).getProd_price());        // pos에 맞는 데이터의 가격값을 전송
-                        intent.putExtra("img", arrayList.get(pos).getProd_img());        // pos에 맞는 데이터의 이미지값을 전송
-                        intent.putExtra("collection", arrayList.get(pos).getCollection()); // 모금액
-                        intent.putExtra("month", arrayList.get(pos).getMonth());    // 마감 월
-                        intent.putExtra("day", arrayList.get(pos).getDay());    // 마감 일
                         intent.putExtra("uid", arrayList.get(pos).getUid());    // host uid
                         intent.putExtra("fid", arrayList.get(pos).getFid()); // 초대코드
+                        intent.putExtra("host_name", arrayList.get(pos).getHost_name());      // pos에 맞는 데이터의 호스트 이름값을 전송
+                        intent.putExtra("img", arrayList.get(pos).getImg());        // pos에 맞는 데이터의 이미지값을 전송
+                        //intent.putExtra("brand", arrayList.get(pos).getBrand());
+                        intent.putExtra("name", arrayList.get(pos).getName());      // pos에 맞는 데이터의 이름값을 전송
+                        intent.putExtra("price", arrayList.get(pos).getPrice());        // pos에 맞는 데이터의 가격값을 전송
+                        intent.putExtra("month", arrayList.get(pos).getMonth());    // 마감 월
+                        intent.putExtra("day", arrayList.get(pos).getDay());    // 마감 일
+                        intent.putExtra("collection", arrayList.get(pos).getCollection()); // 모금액
 
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }

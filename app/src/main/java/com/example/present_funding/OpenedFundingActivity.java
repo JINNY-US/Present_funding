@@ -23,7 +23,7 @@ public class OpenedFundingActivity extends AppCompatActivity {
     private RecyclerView recyclerView; // 상품 나열할 뷰
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Funding> arrayList; // 상품 정보 저장할 리스트
+    private ArrayList<Fundings> arrayList; // 상품 정보 저장할 리스트
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -43,15 +43,15 @@ public class OpenedFundingActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
 
-        databaseReference = database.getReference("Funding");  // firebase에 저장되어 있는 Market에 대한 하위 데이터 수집
+        databaseReference = database.getReference("Fundings");  // firebase에 저장되어 있는 Funding에 대한 하위 데이터 수집
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase의 데이터를 받아오는 곳
                 arrayList.clear(); //초기화
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Funding openedfunding = snapshot.getValue(Funding.class);         // Market에 대한 하위 데이터(getChildren)를 product(구조체? 형식)에 저장
-                    arrayList.add(openedfunding); //data를 recycler로 보낼 준비         // 미리 만들어둔 배열에 product 저장
+                    Fundings funding = snapshot.getValue(Fundings.class);         // Funding에 대한 하위 데이터(getChildren)를 openedfunding(구조체? 형식)에 저장
+                    arrayList.add(funding); //data를 recycler로 보낼 준비         // 미리 만들어둔 배열에 저장
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -59,7 +59,7 @@ public class OpenedFundingActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 //error 발생 시
-                Log.e("OpenedFundingActivity", String.valueOf(error.toException()));
+                Log.e("OpenedFundingActivity", String.valueOf(error.toException()));        // 에러 로그 출력
             }
         });
         adapter = new FundingAdapter(arrayList, this);
@@ -73,11 +73,6 @@ public class OpenedFundingActivity extends AppCompatActivity {
     //뒤로가기 시 메인페이지로 이동
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
-        Intent intent;
-        intent = new Intent(getApplication(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
+        super.onBackPressed();
     }
 }
