@@ -1,9 +1,14 @@
 package com.example.present_funding;
 
-public class Funding {
-    private String addr, addr_detail, collection, day, month, prod_img, prod_name, prod_price, uid, host_name;
+import com.google.firebase.firestore.Exclude;
 
-    public Funding() {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Funding {
+    private String uid, addr, addr_detail, collection, day, month, prod_img, prod_name, prod_price, host_name, fid;
+
+    public Funding(String addr, String addr_detail, String collection, String day, String month, String prod_img, String prod_name, String prod_price, String host_name, String fid) {
     }
 
     public String getAddr() {
@@ -62,12 +67,18 @@ public class Funding {
         this.prod_name = prod_name;
     }
 
-    public String getProd_price() {
-        return prod_price;
-    }
+    public String getProd_price() { return prod_price; }
 
     public void setProd_price(String prod_price) {
         this.prod_price = prod_price;
+    }
+
+    public String getFid() {
+        return fid;
+    }
+
+    public void setFid(String uid) {
+        this.uid = uid;
     }
 
     public String getUid() {
@@ -85,4 +96,5 @@ public class Funding {
     public void setHost_name(String uname) {
         this.host_name = uname;
     }
+
 }

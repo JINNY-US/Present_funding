@@ -33,6 +33,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Random;
 
 public class FundingOpenActivity extends AppCompatActivity {
 
@@ -40,7 +41,7 @@ public class FundingOpenActivity extends AppCompatActivity {
     private TextView txt_prod_price, txt_prod_name, txt_choicedate;
     private EditText txt_addr_detail, txt_addr;
 
-    String get_name, get_price, get_img, get_brand, host_name;
+    String get_name, get_price, get_img, get_brand, host_name, fid;
     private int Month, Day;
     private int Collection;
 
@@ -114,16 +115,17 @@ public class FundingOpenActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Collection = 0;
-                FundingUpload(host_name, get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection);
+                FundingUpload(host_name, get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), Collection, fid);
 
             }
 
-            private void FundingUpload(String host_name, String get_img, String get_brand, String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection) {
+            private void FundingUpload(String host_name, String get_img, String get_brand, String get_name, String get_price, int month, int day, Editable addr, Editable addr_detail, int collection, String fid) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     Toast.makeText(FundingOpenActivity.this , "펀딩이 성공적으로 오픈되었습니다!", Toast.LENGTH_LONG).show();
 
                     String uid = user.getUid();
+                    fid = random();
 
                     HashMap<Object, String> funding = new HashMap<>();
 
@@ -137,6 +139,8 @@ public class FundingOpenActivity extends AppCompatActivity {
                     funding.put("addr", String.valueOf(addr));
                     funding.put("addr_detail", String.valueOf(addr_detail));
                     funding.put("collection", String.valueOf(collection));
+                    funding.put("fid", fid);
+                    funding.put("uid", uid);
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference userRef = database.getReference("Funding");
@@ -160,8 +164,18 @@ public class FundingOpenActivity extends AppCompatActivity {
 
     }
 
-
-
+    //invite code random generator
+    public static String random() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = (generator.nextInt(96) + 32);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++){
+            tempChar = (char) (generator.nextInt(96) + 32);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
+    }
 
     public void showDatePicker(View view) {
         DialogFragment newFragment = new DatePickerFragment();

@@ -80,6 +80,8 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
                         intent.putExtra("collection", arrayList.get(pos).getCollection()); // 모금액
                         intent.putExtra("month", arrayList.get(pos).getMonth());    // 마감 월
                         intent.putExtra("day", arrayList.get(pos).getDay());    // 마감 일
+                        intent.putExtra("uid", arrayList.get(pos).getUid());    // host uid
+                        intent.putExtra("fid", arrayList.get(pos).getFid()); // 초대코드
 
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }

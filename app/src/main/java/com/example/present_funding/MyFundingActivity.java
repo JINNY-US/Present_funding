@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class MyFundingActivity extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class MyFundingActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     DatabaseReference mDatabase;
     FirebaseUser user;
-    String uid, my_name, my_img, my_price, my_collection, my_month, my_day;
+    String uid, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class MyFundingActivity extends AppCompatActivity {
                     my_collection = snapshot.child("collection").getValue(String.class);
                     my_month = snapshot.child("month").getValue(String.class);
                     my_day = snapshot.child("day").getValue(String.class);
+                    my_fid = snapshot.child("fid").getValue(String.class);
 
                     Glide.with(iv_myfunding).load(my_img).into(iv_myfunding); // 이미지 적용
 
@@ -114,7 +116,7 @@ public class MyFundingActivity extends AppCompatActivity {
         });
 
         //펀딩 공유하기
-        btn_fund_share.setOnClickListener(new View.OnClickListener() {
+        btn_fund_share.setOnClickListener(new View.OnClickListener() {      // 팝업창 띄워서 초대 코드 복사하기
 
             @Override
             public void onClick(View v) {
@@ -125,15 +127,14 @@ public class MyFundingActivity extends AppCompatActivity {
         });
 
         //펀딩 취소하기
-        btn_myfundcancle.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //intent함수를 통해 register액티비티 함수를 호출한다.
-                startActivity(new Intent(getApplication(), JoinActivity.class)); // 펀딩이 취소되면 어떻게 할 건지, 데이터에 대한 건도 아이디어가 필요함!!!
-
-            }
-        });
+//        btn_myfundcancle.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                //intent함수를 통해 register액티비티 함수를 호출한다.
+//                startActivity(new Intent(getApplication(), JoinActivity.class)); // 펀딩이 취소되면 어떻게 할 건지, 데이터에 대한 건도 아이디어가 필요함!!!
+//            }
+//        });
 
     }
 

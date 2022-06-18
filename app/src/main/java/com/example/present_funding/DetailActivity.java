@@ -21,7 +21,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     TextView product_brand, product_name, product_price;
     Button open_funding;
     //ImageButton wish_onoff;
-    boolean i = false;
+    //boolean i = false;
 
     String send_name, send_price, send_img, send_brand;
 
