@@ -77,6 +77,9 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
                         intent.putExtra("name", arrayList.get(pos).getProd_name());      // pos에 맞는 데이터의 이름값을 전송
                         intent.putExtra("price", arrayList.get(pos).getProd_price());        // pos에 맞는 데이터의 가격값을 전송
                         intent.putExtra("img", arrayList.get(pos).getProd_img());        // pos에 맞는 데이터의 이미지값을 전송
+                        intent.putExtra("collection", arrayList.get(pos).getCollection()); // 모금액
+                        intent.putExtra("month", arrayList.get(pos).getMonth());    // 마감 월
+                        intent.putExtra("day", arrayList.get(pos).getDay());    // 마감 일
 
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }

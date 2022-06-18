@@ -20,7 +20,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ImageView product_img;
     TextView product_brand, product_name, product_price;
     Button open_funding;
-    ImageButton wish_onoff;
+    //ImageButton wish_onoff;
     boolean i = false;
 
     String send_name, send_price, send_img, send_brand;
@@ -40,7 +40,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         product_name = findViewById(R.id.txt_name); // 상품 이름
         product_price = findViewById(R.id.txt_price); // 상품 가격
         open_funding = findViewById(R.id.btn_open_funding); // 펀딩 오픈하기 버튼
-        wish_onoff = findViewById(R.id.btn_wish); // 위시리스트 추가 버튼, 찜 버튼
+        //wish_onoff = findViewById(R.id.btn_wish); // 위시리스트 추가 버튼, 찜 버튼
 
         Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
 
@@ -58,18 +58,18 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         open_funding.setOnClickListener(this);
 
-        wish_onoff.setOnClickListener(new View.OnClickListener() { // on off 이미지 바꾸는 건 성공
-            @Override                                               // 바꾼 이미지 (on, off)의 정보를 DB에 저장해야 함!!!!!!!!!!!!
-            public void onClick(View v) {
-                if (i == true){
-                    wish_onoff.setImageResource(android.R.drawable.btn_star_big_off);
-                    i = false;
-                }else {
-                    wish_onoff.setImageResource(android.R.drawable.btn_star_big_on);
-                    i = true;
-                }
-            }
-        });
+//        wish_onoff.setOnClickListener(new View.OnClickListener() { // on off 이미지 바꾸는 건 성공
+//            @Override                                               // 바꾼 이미지 (on, off)의 정보를 DB에 저장해야 함!!!!!!!!!!!!
+//            public void onClick(View v) {
+//                if (i == true){
+//                    wish_onoff.setImageResource(android.R.drawable.btn_star_big_off);
+//                    i = false;
+//                }else {
+//                    wish_onoff.setImageResource(android.R.drawable.btn_star_big_on);
+//                    i = true;
+//                }
+//            }
+//        });
     }
 
     @Override

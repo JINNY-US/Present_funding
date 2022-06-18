@@ -13,7 +13,6 @@
         android:background="@color/main_orange"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -51,10 +50,10 @@
         android:id="@+id/txt_achieve_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="166dp"
-        android:layout_marginEnd="167dp"
+        android:layout_marginTop="10dp"
         android:text="목표 달성액 : "
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_funding_img" />
@@ -63,10 +62,12 @@
         android:id="@+id/txt_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginEnd="181dp"
+        android:layout_marginTop="10dp"
         android:text="상품명 : "
         android:textColor="@color/black"
+        android:textSize="16sp"
+        android:ellipsize="end"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_achieve_price" />
@@ -88,11 +89,10 @@
         android:id="@+id/txt_currunt_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="166dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="167dp"
+        android:layout_marginTop="10dp"
         android:text="현재 달성액 : "
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
@@ -101,16 +101,16 @@
         android:id="@+id/txt_lack_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginEnd="173dp"
+        android:layout_marginTop="10dp"
         android:text="부족 금액 : "
         android:textColor="#DF3F3F"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_currunt_price" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/txt_deadline_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="61dp"
@@ -123,15 +123,15 @@
 
     <Button
         android:id="@+id/btn_go_payment"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
         android:layout_marginStart="77dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="78dp"
         android:text="펀딩하기"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_deadline_info" />
 
     <Button
         android:id="@+id/btn_fundme"
@@ -146,16 +146,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_go_payment" />
 
-    <Button
-        android:id="@+id/btn_fundcancle"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="78dp"
-        android:text="펀딩 취소하기"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fundme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
