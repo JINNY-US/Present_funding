@@ -22,7 +22,7 @@ public class FundingStatusActivity extends AppCompatActivity {
 
     private BackPressCloseHandler backPressCloseHandler;
 
-    String get_host_name, get_prod_name, get_prod_price, get_prod_img, get_collection, get_month, get_day, get_fid, get_uid;
+    String get_host_name, get_prod_brand, get_prod_name, get_prod_price, get_prod_img, get_collection, get_month, get_day, get_fid, get_uid, get_addr, get_addr_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,11 @@ public class FundingStatusActivity extends AppCompatActivity {
         get_fid = intent.getStringExtra("fid");
         get_host_name = intent.getStringExtra("host_name");
         get_prod_img = intent.getStringExtra("img");
+        get_prod_brand = intent.getStringExtra("brand");
         get_prod_name = intent.getStringExtra("name");
         get_prod_price = intent.getStringExtra("price");
+        get_addr = intent.getStringExtra("addr");
+        get_addr_detail = intent.getStringExtra("addr_detail");
         get_month = intent.getStringExtra("month");
         get_day = intent.getStringExtra("day");
         get_collection = intent.getStringExtra("collection");
@@ -81,6 +84,12 @@ public class FundingStatusActivity extends AppCompatActivity {
                 intent2.putExtra("uid", get_uid);
                 intent2.putExtra("month", get_month);
                 intent2.putExtra("day", get_day);
+                intent2.putExtra("img", get_prod_img);
+                intent2.putExtra("brand", get_prod_brand);
+                intent2.putExtra("price", get_prod_price);
+                intent2.putExtra("addr", get_addr);
+                intent2.putExtra("addr_detail", get_addr_detail);
+                intent2.putExtra("collection", get_collection);
                 startActivity(intent2);
             }
         });
