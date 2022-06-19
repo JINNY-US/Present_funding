@@ -19,13 +19,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Present_funding">
         <activity
+            android:name=".NotExistMyfundingActivity"
+            android:exported="false" />
+        <activity
             android:name=".OpenedFundingActivity"
-            android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:exported="true">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".AddrSearchActivity"
@@ -41,24 +46,28 @@
             android:exported="false" />
         <activity
             android:name=".FundingOpenActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".FundingStatusActivity"
-            android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:exported="true">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".FundingPaymentActivity"
-            android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:exported="true">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".FundingFinishActivity"
@@ -78,7 +87,7 @@
         <activity
             android:name=".MypageActivity"
             android:exported="true"
-            android:label="@string/title_activity_mypage"></activity>
+            android:label="@string/title_activity_mypage" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

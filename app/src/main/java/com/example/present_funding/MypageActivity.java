@@ -6,18 +6,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MypageActivity extends Activity {
 
     Button go_profile, go_funding, go_wishlist;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    DatabaseReference mDatabase;
+    FirebaseUser user;
+    String uid;
 
     SharedPreferences.Editor editor;
 
@@ -47,8 +60,15 @@ public class MypageActivity extends Activity {
         go_funding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MyFundingActivity.class));
-                finish();
+
+                user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
+                uid = user != null ? user.getUid() : null;
+                mDatabase = FirebaseDatabase.getInstance().getReference("Fundings");
+
+                startActivity(new Intent(MypageActivity.this, NotExistMyfundingActivity.class));
+                if(mDatabase.child(uid) != null) {
+                    startActivity(new Intent(MypageActivity.this, MyFundingActivity.class));
+                }
             }
         });
 

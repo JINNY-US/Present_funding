@@ -198,8 +198,11 @@ public class MyProfileActivity extends AppCompatActivity {
     //뒤로가기 추가
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        //backPressCloseHandler.onBackPressed();
+        Intent intent;
+        intent = new Intent(getApplication(), MypageActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
 }

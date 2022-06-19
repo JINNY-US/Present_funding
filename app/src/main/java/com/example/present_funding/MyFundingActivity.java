@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -75,11 +76,12 @@ public class MyFundingActivity extends AppCompatActivity {
         btn_fund_share = findViewById(R.id.btn_fund_share); // 펀딩 공유하기
         btn_myfundcancle = findViewById(R.id.btn_myfundcancle); // 펀딩 취소하기
 
-        Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
+        //Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
 
         user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
         uid = user != null ? user.getUid() : null;
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mDatabase.child("Fundings").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -150,9 +152,18 @@ public class MyFundingActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {           // 펀딩을 취소하게 되었을 때, db에서 펀딩에 대한 내용을 삭제하는 코드 필요
-                                //firebaseAuth.signOut();
-                                editor.clear();
-                                editor.commit();
+                                mDatabase.child("Fundings").child(uid).child("fid").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("uid").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("host_name").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("img").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("brand").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("name").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("price").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("addr").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("addr_detail").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("month").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("day").removeValue();
+                                mDatabase.child("Fundings").child(uid).child("collection").removeValue();
                                 Intent intent = new Intent(MyFundingActivity.this, MypageActivity.class);
                                 startActivity(intent);
                                 finish();
