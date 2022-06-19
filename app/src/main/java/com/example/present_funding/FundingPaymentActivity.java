@@ -23,17 +23,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FundingPaymentActivity extends AppCompatActivity {
 
     Button btn_go_finish, btn_funding_cancle;
     TextView txt_pay_for_host, txt_pay_prod_name, txt_pay_check, textView3, textView9, textView10;
-    //EditText txt_pay_input;
-    String get_host_name, get_prod_name, get_fid, get_uid;
-    String pay_input;
-    //int pay_input;
+    String get_host_name, get_prod_name, get_fid, get_uid, get_month, get_day;
+    String pay_input, collection;
 
-    private ArrayList<Fundings> arrayList; // 정보 저장할 리스트
+    //private ArrayList<Fundings> arrayList; // 정보 저장할 리스트
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -71,13 +71,20 @@ public class FundingPaymentActivity extends AppCompatActivity {
         get_prod_name = intent.getStringExtra("name");
         get_fid = intent.getStringExtra("fid");
         get_uid = intent.getStringExtra("uid");
+        get_month = intent.getStringExtra("month");
+        get_day = intent.getStringExtra("day");
 //
         txt_pay_for_host.setText("호스트명: " + get_host_name);
         txt_pay_prod_name.setText("상품명: " + get_prod_name);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
+        database = FirebaseDatabase.getInstance(); //파이어베이스 연동
+        //databaseReference = database.getReference("Fundings").child(get_uid);
+
         txt_pay_input.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {   //텍스트 입력이 모두 끝았을때 Call back
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 //String pay_input = String.valueOf(txt_pay_input.getText());
                 //txt_pay_check.setText(pay_input + " 원");
             }
@@ -87,54 +94,78 @@ public class FundingPaymentActivity extends AppCompatActivity {
                 //pay_input = Integer.parseInt(String.valueOf(txt_pay_input.getText()));
                 pay_input = String.valueOf(txt_pay_input.getText());
                 txt_pay_check.setText(pay_input + " 원");
+                //textView3.setText(get_uid);
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {   //텍스트가 입력하기 전에 Call back
-
+            public void afterTextChanged(Editable editable) {
             }
         });
 
 
+
         //int collection_input = Integer.parseInt(pay_input.replaceAll("[\\D]", ""));
 //
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
 
         btn_go_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (user != null) {
-                    database = FirebaseDatabase.getInstance(); //파이어베이스 연동
 
-                    databaseReference = database.getReference("Fundings").child(get_uid).child("collection");
-                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            //firebase의 데이터를 받아오는 곳
-                            for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        //        int collection = Integer.parseInt(snapshot.getValue().toString());
-                                //String collection = snapshot.getValue().toString();
-                                //int int_collection = Integer.parseInt(collection.replaceAll("[\\D]", ""));
-                                //int collection_input = Integer.parseInt(pay_input.replaceAll("[\\D]", ""));
-                        //        collection += pay_input;
-                                //collection = String.valueOf(int_collection);
-                        //        databaseReference.child("collection").setValue(collection);
-                            }
-                        }
+                    Map<String, Object> map = new HashMap<String, Object>();
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            //error 발생 시
-                            Log.e("FundingPaymentActivity", String.valueOf(error.toException()));
-                        }
-                    });
+                    databaseReference = database.getReference();
+                    //collection = String.valueOf(databaseReference.child("Fundings").child(get_uid).child("collection").getDatabase());
+                    //collection = databaseReference.child(get_uid).child("collection").getKey();
+                    //collection = databaseReference.child(get_uid).child("collection").toString();        //data의 링크로 바뀜
+                    //collection = databaseReference.child(get_uid).child("collection")
+                    Toast.makeText(FundingPaymentActivity.this , collection, Toast.LENGTH_LONG).show();
+                    int int_collection = Integer.parseInt(collection.replaceAll("[\\D]", ""));
+                    int collection_input = Integer.parseInt(pay_input.replaceAll("[\\D]", ""));
+                    int_collection += collection_input;
+                    collection = String.valueOf(int_collection);
+                    map.put("collection", collection);
+                    databaseReference.child("Fundings").child(get_uid).updateChildren(map);
+
+                    //Toast.makeText(FundingPaymentActivity.this , collection_input + ", " + collection_input, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(FundingPaymentActivity.this , int_collection + ", " + int_collection, Toast.LENGTH_LONG).show();
+
+
+//                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            //firebase의 데이터를 받아오는 곳
+//                            for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                                collection = snapshot.child("collection").getValue().toString();
+//                                int int_collection = Integer.parseInt(collection.replaceAll("[\\D]", ""));
+//                                int collection_input = Integer.parseInt(pay_input.replaceAll("[\\D]", ""));
+//                                int_collection += collection_input;
+//                                collection = String.valueOf(int_collection);
+//
+//                                map.put("collection", collection);
+//                                databaseReference.child("Fundings").child(get_uid).updateChildren(map);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//                            //error 발생 시
+//                            Log.e("FundingPaymentActivity", String.valueOf(error.toException()));
+//                        }
+//                    });
                 } else {
                     Toast.makeText(FundingPaymentActivity.this , "로그인 상태 확인", Toast.LENGTH_LONG).show();// No user is signed in
                 }
 
-                startActivity(new Intent(getApplication(), FundingFinishActivity.class));
+                Intent intent2 = new Intent(FundingPaymentActivity.this, FundingFinishActivity.class); // 데이터를 전송할 activity 설정
+                //intent2.putExtra("host_name", get_host_name);
+                intent2.putExtra("host_name", collection);
+                intent2.putExtra("payment", pay_input);
+                intent2.putExtra("month", get_month);
+                intent2.putExtra("day", get_day);
+
+                startActivity(intent2);
 
             }
 

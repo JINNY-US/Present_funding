@@ -42,7 +42,7 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
                 .into(holder.pd_img);
         holder.pd_hostname.setText(arrayList.get(position).getHost_name()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
         holder.pd_name.setText(arrayList.get(position).getName());
-        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice())+" 원");
+        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice()));
     }
 
     @Override

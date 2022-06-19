@@ -62,7 +62,7 @@ public class FundingStatusActivity extends AppCompatActivity {
         Glide.with(this).load(p_img).into(iv_funding_img); // 이미지 적용
 
         txt_funding_host.setText(get_host_name + "님의 펀딩");
-        txt_achieve_price.setText("목표 달성액: " + get_prod_price + " 원");
+        txt_achieve_price.setText("목표 달성액: " + get_prod_price);
 
         txt_item_name.setText("상품명: " + get_prod_name);
 
@@ -79,6 +79,8 @@ public class FundingStatusActivity extends AppCompatActivity {
                 intent2.putExtra("name", get_prod_name);
                 intent2.putExtra("fid", get_fid);
                 intent2.putExtra("uid", get_uid);
+                intent2.putExtra("month", get_month);
+                intent2.putExtra("day", get_day);
                 startActivity(intent2);
             }
         });
