@@ -74,11 +74,11 @@ public class FundingStatusActivity extends AppCompatActivity {
         go_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplication(), FundingPaymentActivity.class); // 데이터를 전송할 activity 설정
-                intent2.putExtra("send_host_name", get_host_name);
-                intent2.putExtra("send_name", get_prod_name);
-                intent2.putExtra("send_fid", get_fid);
-                intent2.putExtra("send_uid", get_uid);
+                Intent intent2 = new Intent(FundingStatusActivity.this, FundingPaymentActivity.class); // 데이터를 전송할 activity 설정
+                intent2.putExtra("host_name", get_host_name);
+                intent2.putExtra("name", get_prod_name);
+                intent2.putExtra("fid", get_fid);
+                intent2.putExtra("uid", get_uid);
                 startActivity(intent2);
             }
         });

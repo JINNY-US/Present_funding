@@ -20,7 +20,13 @@
         android:theme="@style/Theme.Present_funding">
         <activity
             android:name=".OpenedFundingActivity"
-            android:exported="false" />
+            android:exported="true" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".AddrSearchActivity"
             android:exported="false" />
@@ -38,10 +44,22 @@
             android:exported="true"></activity>
         <activity
             android:name=".FundingStatusActivity"
-            android:exported="false" />
+            android:exported="true" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".FundingPaymentActivity"
-            android:exported="false" />
+            android:exported="true" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".FundingFinishActivity"
             android:exported="false" />

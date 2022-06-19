@@ -75,7 +75,7 @@ public class FundingAdapter extends RecyclerView.Adapter<FundingAdapter.FundingV
                         intent.putExtra("fid", arrayList.get(pos).getFid()); // 초대코드
                         intent.putExtra("host_name", arrayList.get(pos).getHost_name());      // pos에 맞는 데이터의 호스트 이름값을 전송
                         intent.putExtra("img", arrayList.get(pos).getImg());        // pos에 맞는 데이터의 이미지값을 전송
-                        //intent.putExtra("brand", arrayList.get(pos).getBrand());
+                        intent.putExtra("brand", arrayList.get(pos).getBrand());
                         intent.putExtra("name", arrayList.get(pos).getName());      // pos에 맞는 데이터의 이름값을 전송
                         intent.putExtra("price", arrayList.get(pos).getPrice());        // pos에 맞는 데이터의 가격값을 전송
                         intent.putExtra("month", arrayList.get(pos).getMonth());    // 마감 월
