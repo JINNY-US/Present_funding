@@ -29,7 +29,7 @@ public class TempAdapter extends RecyclerView.Adapter<TempAdapter.TempViewHolder
     @NonNull
     @Override
     public TempViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.support_list, parent, false);
         TempViewHolder holder = new TempViewHolder(view);
         return holder;
 
@@ -37,12 +37,9 @@ public class TempAdapter extends RecyclerView.Adapter<TempAdapter.TempViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TempViewHolder holder, int position) {
-//        Glide.with(holder.itemView)
-//                .load(arrayList.get(position).getImg())
-//                .into(holder.pd_img);
-//        holder.pd_hostname.setText(arrayList.get(position).getHost_name()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
-//        holder.pd_name.setText(arrayList.get(position).getName());
-//        holder.pd_price.setText(String.valueOf(arrayList.get(position).getPrice()));
+        holder.sid.setText(arrayList.get(position).getSupport_uid()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
+        holder.s_name.setText(arrayList.get(position).getSupport_name());
+        holder.s_collection.setText(String.valueOf(arrayList.get(position).getTemp()));
     }
 
     @Override
@@ -53,15 +50,13 @@ public class TempAdapter extends RecyclerView.Adapter<TempAdapter.TempViewHolder
 
     public class TempViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView pd_img;
-        TextView pd_hostname, pd_name, pd_price;
+        TextView sid, s_name, s_collection;
 
         public TempViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.pd_img = itemView.findViewById(R.id.img_product_image);
-            this.pd_hostname = itemView.findViewById(R.id.txt_product_brand);
-            this.pd_name = itemView.findViewById(R.id.txt_product_name);
-            this.pd_price = itemView.findViewById(R.id.txt_product_price);
+            this.sid = itemView.findViewById(R.id.txt_support_id);
+            this.s_name = itemView.findViewById(R.id.txt_support_name);
+            this.s_collection = itemView.findViewById(R.id.txt_support_collection);
 
             itemView.setClickable(true);                                // 아이템뷰 클릭시 위치 정보를 가져와서 위치에 맞는 데이터 전송
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -69,20 +64,12 @@ public class TempAdapter extends RecyclerView.Adapter<TempAdapter.TempViewHolder
                 public void onClick(View view) {
                     int pos = getAdapterPosition();                     // pos = 0, 1, 2...이런 식으로 index값을 가져와서 데이터를 전송함
                     if(pos != RecyclerView.NO_POSITION) {
-                        Intent intent = new Intent(context, AskActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
+                        Intent intent = new Intent(context, AskListActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
 
-//                        intent.putExtra("uid", arrayList.get(pos).getUid());    // host uid
-//                        intent.putExtra("fid", arrayList.get(pos).getFid()); // 초대코드
-//                        intent.putExtra("host_name", arrayList.get(pos).getHost_name());      // pos에 맞는 데이터의 호스트 이름값을 전송
-//                        intent.putExtra("img", arrayList.get(pos).getImg());        // pos에 맞는 데이터의 이미지값을 전송
-//                        intent.putExtra("brand", arrayList.get(pos).getBrand());
-//                        intent.putExtra("name", arrayList.get(pos).getName());      // pos에 맞는 데이터의 이름값을 전송
-//                        intent.putExtra("price", arrayList.get(pos).getPrice());        // pos에 맞는 데이터의 가격값을 전송
-//                        intent.putExtra("month", arrayList.get(pos).getMonth());    // 마감 월
-//                        intent.putExtra("day", arrayList.get(pos).getDay());    // 마감 일
-//                        intent.putExtra("collection", arrayList.get(pos).getCollection()); // 모금액
-//                        intent.putExtra("addr", arrayList.get(pos).getAddr());
-//                        intent.putExtra("addr_detail", arrayList.get(pos).getAddr_detail());
+                        intent.putExtra("sid", arrayList.get(pos).getSupport_uid());
+                        intent.putExtra("s_name", arrayList.get(pos).getSupport_name());
+                        intent.putExtra("s_collection", arrayList.get(pos).getTemp());
+                        intent.putExtra("val", arrayList.get(pos).getVal());
 
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }

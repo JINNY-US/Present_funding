@@ -50,15 +50,11 @@ import java.util.Random;
 public class MyFundingActivity extends AppCompatActivity {
 
     private ImageView iv_myfunding;
-    private TextView txt_product_price, txt_product_name, txt_mycurrunt_price, txt_lack_price, txt_information, txt_myfunding, txt_myitem_name;
+    private TextView txt_product_price, txt_product_name, txt_mycurrunt_price, txt_lack_price, txt_information, txt_myfunding, txt_myitem_name, txt_my_fid, textview6;
     private ProgressBar my_progressBar;
     private Button btn_fund_share, btn_myfundcancle;
     private BackPressCloseHandler backPressCloseHandler;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-    //abstract class Context;
-
-    WebView web;
 
     SharedPreferences.Editor editor;
 
@@ -89,14 +85,11 @@ public class MyFundingActivity extends AppCompatActivity {
         txt_mycurrunt_price = findViewById(R.id.txt_mycurrunt_price); //현재 달성액 -> 이건 collection 데이터 불러오면 될듯
         txt_lack_price = findViewById(R.id.txt_lack_price); //부족한 금액 = 목표-현재
         txt_myitem_name = findViewById(R.id.txt_myitem_name);
-        //web = findViewById(R.id.wv_share);
-
-        //ProgressBar my_progressBar = (ProgressBar) findViewById(R.id.my_progressBar); // 진행 그래프?
-
         txt_information = findViewById(R.id.txt_information); // 이 펀딩은 -월 -일에 마감되고, -월-일에 결제됩니다.
-
-        btn_fund_share = findViewById(R.id.btn_fund_share); // 펀딩 공유하기
+        //btn_fund_share = findViewById(R.id.btn_fund_share); // 펀딩 공유하기
         btn_myfundcancle = findViewById(R.id.btn_myfundcancle); // 펀딩 취소하기
+        txt_my_fid = findViewById(R.id.txt_my_fid);
+        //textview6 = findViewById(R.id.textView6);
 
         //Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
 
@@ -117,6 +110,8 @@ public class MyFundingActivity extends AppCompatActivity {
                     my_month = snapshot.child("month").getValue(String.class);
                     my_day = snapshot.child("day").getValue(String.class);
                     my_fid = snapshot.child("fid").getValue(String.class);
+
+                    txt_my_fid.setText(my_fid);
 
                     txt_myitem_name.setText("상품명: " + my_prod_name);
 
@@ -145,19 +140,19 @@ public class MyFundingActivity extends AppCompatActivity {
         });
 
         //펀딩 공유하기
-        btn_fund_share.setOnClickListener(new View.OnClickListener() {      // 팝업창 띄워서 초대 코드 복사하기
+//        btn_fund_share.setOnClickListener(new View.OnClickListener() {      // 팝업창 띄워서 초대 코드 복사하기
+//
+//            @Override
+//            public void onClick(View v) {
 
-            @Override
-            public void onClick(View v) {
-
-                subject = my_name+"님의 " + my_prod_name + "을 위한 펀딩이 오픈되었어요! 선물 펀딩 앱에서 확인해보세요.";
-                PageURL = String.valueOf(uid.startsWith(String.valueOf((FundingStatusActivity.class))));
-                ImgUrl = my_img;
+//                subject = my_name+"님의 " + my_prod_name + "을 위한 펀딩이 오픈되었어요! 선물 펀딩 앱에서 확인해보세요.";
+//                PageURL = String.valueOf(uid.startsWith(String.valueOf((FundingStatusActivity.class))));
+//                ImgUrl = my_img;
 //                                        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 //                                        List<ActivityManager.RunningTaskInfo> info = manager.getRunningTasks(1);
 //                                        ComponentName componentName= info.get(0).topActivity;
 //                                        String ActivityName = componentName.getShortClassName().substring(1);
-                Create_DynamicLink(subject, PageURL, ImgUrl);
+//                Create_DynamicLink(subject, PageURL, ImgUrl);
 
 
 //                AlertDialog.Builder alt_bld = new AlertDialog.Builder(v.getContext());
@@ -193,8 +188,8 @@ public class MyFundingActivity extends AppCompatActivity {
 //                alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(180, 180, 180)));
 //                alert.show();
             }
-        });
-    }
+//        });
+//    }
 
     //펀딩 취소 함수
     public void fundingCancle(View view) {

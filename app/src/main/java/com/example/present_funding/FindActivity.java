@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class FindActivity extends AppCompatActivity implements View.OnClickListener{
-    /*private static final String TAG = "FindActivity";*/
     FirebaseAuth firebaseAuth;
     EditText eText;
     Button btnfind;

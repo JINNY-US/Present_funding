@@ -31,7 +31,7 @@ public class JoinActivity extends Activity {
 
     private static final String TAG = "JoinActivity";
     // 이메일과 비밀번호
-    EditText joinId, joinPwd, checkPwd, joinName;
+    EditText joinId, joinPwd, checkPwd, joinName, joinAge;
     Button  registerBtn;
     //파이어베이스 인증 객체 생성
     private FirebaseAuth firebaseAuth;
@@ -59,6 +59,7 @@ public class JoinActivity extends Activity {
         checkPwd = findViewById(R.id.txt_check_pwd);
         joinName= findViewById(R.id.txt_join_name);
         registerBtn = findViewById(R.id.btn_join_submit);
+        joinAge = findViewById(R.id.txt_join_age);
 
         //파이어베이스 user 로 접글
 
@@ -69,20 +70,21 @@ public class JoinActivity extends Activity {
             public void onClick(View v) {
                 //가입 정보 가져오기
                 final String email;
-                String pwd, pwdcheck, name;
+                String pwd, pwdcheck, name, age;
                 int user;
 
-                if (!joinId.getText().toString().equals("") && !joinPwd.getText().toString().equals("") && !checkPwd.getText().toString().equals("") && !joinName.getText().toString().equals("")) {
+                if (!joinId.getText().toString().equals("") && !joinPwd.getText().toString().equals("") && !checkPwd.getText().toString().equals("") && !joinName.getText().toString().equals("") && !joinAge.getText().toString().equals("")) {
                     //항목들이 공백이 아닌 경우
                     email = joinId.getText().toString().trim();
                     pwd = joinPwd.getText().toString().trim();
                     pwdcheck = checkPwd.getText().toString().trim();
                     name = joinName.getText().toString().trim();
+                    age = joinAge.getText().toString().trim();
 
                     if (isValidEmail(email) && isValidPasswd(pwd, pwdcheck)) {
 
                         if (pwd.equals(pwdcheck)) {
-                            createUser(email, pwd, name);
+                            createUser(email, pwd, name, age);
 
                             //비밀번호가 일치하지 않을 시
                         } else {
@@ -129,7 +131,7 @@ public class JoinActivity extends Activity {
     }
 
     //회원가입
-    private void createUser (String email, String pwd, String Name) {
+    private void createUser (String email, String pwd, String Name, String Age) {
         //파이어베이스에 신규계정 등록하기
         firebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(JoinActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -144,6 +146,7 @@ public class JoinActivity extends Activity {
                     String password = pwd;
                     String uid = user.getUid();
                     String name = Name;
+                    String age = Age;
                     //String init_set = "false"; // 셀러 초기 확인
 
                     //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
@@ -153,20 +156,21 @@ public class JoinActivity extends Activity {
                     userInfo.put("email", email);
                     userInfo.put("password", password);
                     userInfo.put("name", name);
+                    userInfo.put("age", age);
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference userRef = database.getReference("Users");
                     userRef.child(uid).setValue(userInfo);
 
-                    HashMap<Object, String> userTemp = new HashMap<>();
-
-                    userTemp.put("support_uid", null);
-                    userTemp.put("temp", null);
-                    userTemp.put("val", null);
-
-                    FirebaseDatabase database2 = FirebaseDatabase.getInstance();
-                    DatabaseReference userRef2 = database2.getReference("Temp");
-                    userRef2.child(uid).setValue(userTemp);
+//                    HashMap<Object, String> userTemp = new HashMap<>();
+//
+//                    userTemp.put("support_uid", null);
+//                    userTemp.put("temp", null);
+//                    userTemp.put("val", null);
+//
+//                    FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+//                    DatabaseReference userRef2 = database2.getReference("Temp");
+//                    userRef2.child(uid).setValue(userTemp);
 
                     //가입이 이루어졌을 시 가입 화면을 빠져나감
                     firebaseAuth.signOut();

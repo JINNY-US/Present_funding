@@ -42,7 +42,7 @@ public class FundingStatusActivity extends AppCompatActivity {
         txt_lack_price = findViewById(R.id.txt_lack_price);     // 부족 금액:
         txt_deadline_info = findViewById(R.id.txt_deadline_info);   // 이 펀딩은 ~월 ~일에 마감됩니다.
         iv_funding_img = findViewById(R.id.iv_not_img);
-        ProgressBar status_progressBar = (ProgressBar) findViewById(R.id.progressBar); // 진행 그래프?
+        //ProgressBar status_progressBar = (ProgressBar) findViewById(R.id.progressBar); // 진행 그래프?
 
         get_uid = intent.getStringExtra("uid");
         get_fid = intent.getStringExtra("fid");

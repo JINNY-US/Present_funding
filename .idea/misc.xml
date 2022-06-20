@@ -15,6 +15,7 @@
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/acticity_wishlist.xml" value="0.358695652173913" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_addr_search.xml" value="0.36614583333333334" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_ask.xml" value="0.25364583333333335" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_ask_list.xml" value="0.36614583333333334" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_detail.xml" value="0.25364583333333335" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_find.xml" value="0.358695652173913" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/activity_funding_finish.xml" value="0.36614583333333334" />
@@ -47,6 +48,7 @@
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/item_slider.xml" value="0.25364583333333335" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/list_item.xml" value="0.2329192546583851" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/layout/menu.xml" value="0.2361111111111111" />
+        <entry key="..\:/SM/Present_funding/app/src/main/res/layout/support_list.xml" value="0.36614583333333334" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/menu/actionbar_actions.xml" value="0.25364583333333335" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/SM/Present_funding/app/src/main/res/menu/bottom_navigation.xml" value="0.25364583333333335" />

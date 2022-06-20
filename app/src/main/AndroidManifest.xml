@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Present_funding">
         <activity
+            android:name=".AskListActivity"
+            android:exported="false" />
+        <activity
             android:name=".AskActivity"
             android:exported="false" />
         <activity
