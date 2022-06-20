@@ -153,19 +153,20 @@ public class JoinActivity extends Activity {
                     userInfo.put("email", email);
                     userInfo.put("password", password);
                     userInfo.put("name", name);
-                    //userInfo.put("init_set", init_set);
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference userRef = database.getReference("Users");
                     userRef.child(uid).setValue(userInfo);
 
-                    HashMap<Object, String> storeInfo = new HashMap<>();
-                    //HashMap<Object, String> userInfo_ = new HashMap<>();
+                    HashMap<Object, String> userTemp = new HashMap<>();
 
-                    storeInfo.put("uid", uid);
+                    userTemp.put("support_uid", null);
+                    userTemp.put("temp", null);
+                    userTemp.put("val", null);
 
-                    DatabaseReference storeRef = database.getReference("StoreInfo");
-                    storeRef.child(uid).setValue(storeInfo);
+                    FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+                    DatabaseReference userRef2 = database2.getReference("Temp");
+                    userRef2.child(uid).setValue(userTemp);
 
                     //가입이 이루어졌을 시 가입 화면을 빠져나감
                     firebaseAuth.signOut();

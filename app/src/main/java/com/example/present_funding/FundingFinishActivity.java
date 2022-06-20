@@ -18,12 +18,7 @@ public class FundingFinishActivity extends AppCompatActivity {
 
     Button go_main;
     TextView textView, txt_fund_info;
-
     String get_host_name, get_payment, get_month, get_day;
-    //int month = 0, day = 0;
-
-    private long payday;
-    //private Calculate_Date calculate_date;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -57,7 +52,6 @@ public class FundingFinishActivity extends AppCompatActivity {
                 "\n\n후원금액: " + get_payment +
                 "\n\n펀딩 마감일: " + get_month + get_day +
                 "\n\n결제 예정일은 펀딩 마감 4일 전입니다.");
-
     }
 
     //뒤로가기 추가

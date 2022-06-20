@@ -6,21 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Fundings {
-    private String uid, fid, host_name, img, brand, name, price, addr, addr_detail, month, day, collection;
+    private String uid;
+    private String fid;
+    private String host_name;
+    private String img;
+    private String brand;
+    public String name;
+    private String price;
+    private String addr;
+    private String addr_detail;
+    private String month;
+    private String day;
+    private String collection;
 
-    public Fundings(){//String uid, String fid, String host_name, String img, String brand, String name, String price, String addr, String addr_detail,String month, String  day,String collection) {
-//        this.uid = uid;
-//        this.fid = fid;
-//        this.host_name = host_name;
-//        this.img = img;
-//        this.brand = brand;
-//        this.name = name;
-//        this.price = price;
-//        this.addr = addr;
-//        this.addr_detail = addr_detail;
-//        this.month = month;
-//        this.day = day;
-//        this.collection = collection;
+    public Fundings(){
     }
 
     public String getUid() {

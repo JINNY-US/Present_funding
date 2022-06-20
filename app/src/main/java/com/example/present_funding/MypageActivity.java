@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MypageActivity extends Activity {
 
-    Button go_profile, go_funding, go_wishlist;
+    Button go_profile, go_funding, go_ask;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     DatabaseReference mDatabase;
     FirebaseUser user;
@@ -42,7 +42,7 @@ public class MypageActivity extends Activity {
 
         go_profile = findViewById(R.id.btn_my_profile);
         go_funding = findViewById(R.id.btn_my_funding);
-        go_wishlist = findViewById(R.id.btn_my_wishlist);
+        go_ask = findViewById(R.id.btn_my_ask);
 
         SharedPreferences sharedPreferences= getSharedPreferences("sFile", MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -72,12 +72,19 @@ public class MypageActivity extends Activity {
             }
         });
 
-        //나의 위시리스트
-        go_wishlist.setOnClickListener(new View.OnClickListener() {
+        //승인 요청 페이지
+        go_ask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), WishlistActivity.class));
-                finish();
+
+                user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
+                uid = user != null ? user.getUid() : null;
+                mDatabase = FirebaseDatabase.getInstance().getReference("Temp");
+
+                startActivity(new Intent(MypageActivity.this, NotExistMyfundingActivity.class));
+                if(mDatabase != null) {
+                    startActivity(new Intent(MypageActivity.this, MyFundingActivity.class));
+                }
             }
         });
 

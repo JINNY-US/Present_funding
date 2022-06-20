@@ -3,6 +3,7 @@ package com.example.present_funding;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,7 @@ public class FundingStatusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_funding_status);
 
         backPressCloseHandler = new BackPressCloseHandler(this);
-        Intent intent = getIntent(); // FundingAdapter에서 데이터 가져옴
+        Intent intent = getIntent();
 
         go_payment = findViewById(R.id.btn_go_payment); // 펀딩하기 버튼
         txt_funding_host = findViewById(R.id.txt_not_info); // ~님의 펀딩
@@ -66,12 +67,14 @@ public class FundingStatusActivity extends AppCompatActivity {
 
         txt_funding_host.setText(get_host_name + "님의 펀딩");
         txt_achieve_price.setText("목표 달성액: " + get_prod_price);
-
         txt_item_name.setText("상품명: " + get_prod_name);
-
         txt_currunt_price.setText("현재 달성액: " + get_collection + " 원");
-        txt_lack_price.setText("부족한 금액: " + lack_money + " 원");
 
+        if (lack_money > int_price) {
+            lack_money = 0;
+        }
+
+        txt_lack_price.setText("부족한 금액: " + lack_money + " 원");
         txt_deadline_info.setText("이 펀딩은 " + get_month + "월" + get_day + "일에 마감됩니다.");
 
         go_payment.setOnClickListener(new View.OnClickListener() {

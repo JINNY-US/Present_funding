@@ -55,4 +55,9 @@ dependencies {
     //implementation 'com.squareup.retrofit2:retrofit:2.6.4'
     //implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'
 
+    //kakao 관련 서비스 사용을 위한 코드 추가
+    //compile group: 'com.kakao.sdk', name: 'kakaolink', version: project.KAKAO_SDK_VERSION
+    //compileSdk group: 'com.kakao.sdk', name: 'kakaolink', version: project.KAKAO_SDK_VERSION
+
+    implementation 'com.google.firebase:firebase-dynamic-links:19.0.0'
 }

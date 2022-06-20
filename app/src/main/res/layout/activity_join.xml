@@ -92,4 +92,5 @@
         app:layout_constraintEnd_toEndOf="@+id/txt_check_pwd"
         app:layout_constraintStart_toStartOf="@+id/txt_check_pwd"
         app:layout_constraintTop_toBottomOf="@+id/txt_check_pwd" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

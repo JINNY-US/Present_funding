@@ -46,21 +46,21 @@
       android:drawableRight="@drawable/follow_icon"
       android:paddingLeft="20dp"
       android:paddingRight="20dp"
-      android:text="USERID"
+      android:text="프로필"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/mypage_toolbar"
       tools:ignore="TextContrastCheck" />
 
   <Button
-      android:id="@+id/btn_my_wishlist"
+      android:id="@+id/btn_my_ask"
       android:layout_width="match_parent"
       android:layout_height="70dp"
       android:background="@drawable/go_to_setting_btn"
       android:drawableRight="@drawable/follow_icon"
       android:paddingLeft="20dp"
       android:paddingRight="20dp"
-      android:text="나의 위시리스트"
+      android:text="승인 요청"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/btn_my_funding" />
@@ -77,7 +77,7 @@
       android:text="로그아웃"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/btn_my_wishlist"
+      app:layout_constraintTop_toBottomOf="@+id/btn_my_ask"
       tools:ignore="OnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

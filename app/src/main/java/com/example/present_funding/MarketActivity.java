@@ -3,7 +3,6 @@ package com.example.present_funding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -47,7 +46,7 @@ public class MarketActivity extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
 
-        recyclerView = findViewById(R.id.re_market_items);
+        recyclerView = findViewById(R.id.re_ask_items);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
