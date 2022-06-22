@@ -140,9 +140,8 @@ public class FundingPaymentActivity extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         get_Support_name = (String) snapshot.getValue(String.class);
                                         userTemp.put("support_uid", get_Support_uid);
-                                        userTemp.put("supoort_name", get_Support_name); //후원자명
+                                        userTemp.put("support_name", get_Support_name); //후원자명
                                         userTemp.put("temp", pay_input);
-                                        userTemp.put("val", String.valueOf(true));
 
                                         FirebaseDatabase database2 = FirebaseDatabase.getInstance();
                                         DatabaseReference userRef2 = database2.getReference("Temp");

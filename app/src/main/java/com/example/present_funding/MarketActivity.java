@@ -35,15 +35,6 @@ public class MarketActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_market);
 
-//        ivMenu = findViewById(R.id.iv_menu);
-//        ivMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplication(), MypageActivity.class));
-//            }
-//        });
-
-
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView = findViewById(R.id.re_ask_items);

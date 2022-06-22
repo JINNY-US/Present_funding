@@ -39,8 +39,6 @@ public class AskListActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_ask_list);
 
-        backPressCloseHandler = new BackPressCloseHandler(this);
-
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView = findViewById(R.id.re_ask_items);
@@ -55,15 +53,15 @@ public class AskListActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
 
-        databaseReference = database.getReference("Temp");
-        databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference = database.getReference("Temp");          // .child(uid) 여기까지 불러와야 하는데 튕기는 오류가 생김
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //firebase의 데이터를 받아오는 곳
                 arrayList.clear(); //초기화
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Temp temp = snapshot.getValue(Temp.class);         // Funding에 대한 하위 데이터(getChildren)를 openedfunding(구조체? 형식)에 저장
-                    arrayList.add(temp); //data를 recycler로 보낼 준비         // 미리 만들어둔 배열에 저장
+                    Temp temp = snapshot.getValue(Temp.class);
+                    arrayList.add(temp);
                 }
                 adapter.notifyDataSetChanged();
             }

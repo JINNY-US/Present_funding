@@ -26,8 +26,7 @@ public class AskActivity extends AppCompatActivity {
     TextView textView13, txt_ask_support_name, txt_ask_support_collection;
     Button btn_ask_false, btn_ask_true;
 
-    String uid, sid, s_name, collection, s_collection, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid, my_prod_name;;
-    Boolean val;
+    String uid, sid, s_name, collection, s_collection, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid, my_prod_name;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -53,13 +52,12 @@ public class AskActivity extends AppCompatActivity {
         Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
 
 
-        sid = intent.getStringExtra("sid");
+        //sid = intent.getStringExtra("sid");
         s_name = intent.getStringExtra("s_name");
         s_collection = intent.getStringExtra("s_collection");
-        String s_val = intent.getStringExtra("val");
 
-        txt_ask_support_name.setText(s_name);
-        txt_ask_support_collection.setText(s_collection);
+        txt_ask_support_name.setText("후원자명: "+s_name);
+        txt_ask_support_collection.setText("후원 금액: "+s_collection +" 원");
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
@@ -86,7 +84,7 @@ public class AskActivity extends AppCompatActivity {
                             int_collection += collection_input;
                             collection = String.valueOf(int_collection);
                             map.put("collection", collection);
-                            databaseReference.child("Fundings").child(uid).updateChildren(map);
+                            databaseReference.child("Fundings").child(uid).updateChildren(map);         // 모금액이 s_collection 만큼 무한 증식하는 오류가 있음
                         } else{
                             Toast.makeText(AskActivity.this, "오류가 발생했습니다. 다시 시도 해주십시오.", Toast.LENGTH_SHORT).show();
                         }
@@ -103,7 +101,7 @@ public class AskActivity extends AppCompatActivity {
         btn_ask_false.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.child("Temp").child(uid).child(sid).removeValue();
+                databaseReference.child("Temp").child(uid).removeValue();
                 Toast.makeText(AskActivity.this , "펀딩 후원을 거절합니다.", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getApplication(), MypageActivity.class));
             }

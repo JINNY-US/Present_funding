@@ -2,7 +2,6 @@ package com.example.present_funding;
 
 public class Temp {
     private String support_uid, support_name, temp;
-    private Boolean val;
 
     public Temp() {
     }
@@ -29,13 +28,5 @@ public class Temp {
 
     public void setTemp(String temp) {
         this.temp = temp;
-    }
-
-    public Boolean getVal() {
-        return val;
-    }
-
-    public void setVal(Boolean val) {
-        this.val = val;
     }
 }

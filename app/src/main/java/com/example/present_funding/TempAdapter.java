@@ -37,7 +37,7 @@ public class TempAdapter extends RecyclerView.Adapter<TempAdapter.TempViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TempViewHolder holder, int position) {
-        holder.sid.setText(arrayList.get(position).getSupport_uid()); //호스트 이름 (펀딩을 오픈한 사람을 구별하기 위함)
+        holder.sid.setText(arrayList.get(position).getSupport_uid());
         holder.s_name.setText(arrayList.get(position).getSupport_name());
         holder.s_collection.setText(String.valueOf(arrayList.get(position).getTemp()));
     }
@@ -64,12 +64,11 @@ public class TempAdapter extends RecyclerView.Adapter<TempAdapter.TempViewHolder
                 public void onClick(View view) {
                     int pos = getAdapterPosition();                     // pos = 0, 1, 2...이런 식으로 index값을 가져와서 데이터를 전송함
                     if(pos != RecyclerView.NO_POSITION) {
-                        Intent intent = new Intent(context, AskListActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
+                        Intent intent = new Intent(context, AskActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
 
-                        intent.putExtra("sid", arrayList.get(pos).getSupport_uid());
+                        //intent.putExtra("sid", arrayList.get(pos).getSupport_uid());
                         intent.putExtra("s_name", arrayList.get(pos).getSupport_name());
                         intent.putExtra("s_collection", arrayList.get(pos).getTemp());
-                        intent.putExtra("val", arrayList.get(pos).getVal());
 
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }
