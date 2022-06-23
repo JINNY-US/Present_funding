@@ -50,8 +50,8 @@ public class OpenedFundingActivity extends AppCompatActivity {
                 //firebase의 데이터를 받아오는 곳
                 arrayList.clear(); //초기화
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Fundings funding = snapshot.getValue(Fundings.class);         // Funding에 대한 하위 데이터(getChildren)를 openedfunding(구조체? 형식)에 저장
-                    arrayList.add(funding); //data를 recycler로 보낼 준비         // 미리 만들어둔 배열에 저장
+                    Fundings funding = snapshot.getValue(Fundings.class);
+                    arrayList.add(funding);
                 }
                 adapter.notifyDataSetChanged();
             }

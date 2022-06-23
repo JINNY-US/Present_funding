@@ -48,9 +48,6 @@
             android:name=".MyProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".TestViewActivity"
-            android:exported="false" />
-        <activity
             android:name=".FundingOpenActivity"
             android:exported="true" />
         <activity
@@ -104,9 +101,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TestActivity"
-            android:exported="true" />
-        <activity
             android:name=".JoinActivity"
             android:exported="false" />
         <activity
@@ -120,9 +114,6 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity
-            android:name=".WishlistActivity"
-            android:exported="false" />
         <activity
             android:name=".FindActivity"
             android:exported="false" />

@@ -30,11 +30,7 @@ public class Temp {
         this.temp = temp;
     }
 
-    public String getVal() {
-        return val;
-    }
+    public String getVal() { return val; }
 
-    public void setVal(String val) {
-        this.val = val;
-    }
+    public void setVal(String val) { this.val = val; }
 }

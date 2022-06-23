@@ -141,58 +141,7 @@ public class MyFundingActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });
-
-        //펀딩 공유하기
-//        btn_fund_share.setOnClickListener(new View.OnClickListener() {      // 팝업창 띄워서 초대 코드 복사하기
-//
-//            @Override
-//            public void onClick(View v) {
-
-//                subject = my_name+"님의 " + my_prod_name + "을 위한 펀딩이 오픈되었어요! 선물 펀딩 앱에서 확인해보세요.";
-//                PageURL = String.valueOf(uid.startsWith(String.valueOf((FundingStatusActivity.class))));
-//                ImgUrl = my_img;
-//                                        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-//                                        List<ActivityManager.RunningTaskInfo> info = manager.getRunningTasks(1);
-//                                        ComponentName componentName= info.get(0).topActivity;
-//                                        String ActivityName = componentName.getShortClassName().substring(1);
-//                Create_DynamicLink(subject, PageURL, ImgUrl);
-
-
-//                AlertDialog.Builder alt_bld = new AlertDialog.Builder(v.getContext());
-//                alt_bld.setMessage("펀딩 고유 아이디를 복사하여 공유해보세요!").setCancelable(false)
-//                        .setPositiveButton("네",
-//                                new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialogInterface, int i) {   // 클립보드에 복사되는 기능 필요
-////                                        Intent intent = new Intent(MyFundingActivity.this, MypageActivity.class);
-////                                        startActivity(intent);
-////                                        finish();
-//
-//                                    }
-//                                }).setNegativeButton("아니오",
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                dialogInterface.cancel();
-//                            }
-//                        });
-//                AlertDialog alert = alt_bld.create();
-//
-//                //대화창 클릭 시 뒷 배경 어두워지는 것 막기
-//                alert.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-//
-//                //대화창 제목 설정
-//                alert.setTitle("펀딩 공유");
-//
-//                //대화창 아이콘 설정
-//                alert.setIcon(R.drawable.exclamation);
-//
-//                //대화창 배경 색 설정
-//                alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(180, 180, 180)));
-//                alert.show();
-            }
-//        });
-//    }
+    }
 
     //펀딩 취소 함수
     public void fundingCancle(View view) {

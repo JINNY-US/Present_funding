@@ -33,15 +33,13 @@ public class FundingPaymentActivity extends AppCompatActivity {
     TextView txt_pay_for_host, txt_pay_prod_name, txt_pay_check, textView3, textView9, textView10;
     String get_host_name, get_prod_name, get_fid, get_uid, get_month, get_day, get_img, get_brand, get_price, get_addr, get_addr_detail, get_collection;
     String pay_input, collection, get_Age, get_Support_uid, get_Support_name;
-    int int_collection, collection_input, get_age;
+    int get_age;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener firebaseAuthListener;
     FirebaseUser user;
-    //String uid; //, addr, addr_detail, collection, day, month, prod_img, prod_name, prod_price, host_name, fid;
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -68,7 +66,7 @@ public class FundingPaymentActivity extends AppCompatActivity {
         textView10 = findViewById(R.id.textView10);
 
         Intent intent = getIntent();
-//
+
         get_uid = intent.getStringExtra("uid");
         get_fid = intent.getStringExtra("fid");
         get_host_name = intent.getStringExtra("host_name");
@@ -81,7 +79,7 @@ public class FundingPaymentActivity extends AppCompatActivity {
         get_month = intent.getStringExtra("month");
         get_day = intent.getStringExtra("day");
         get_collection = intent.getStringExtra("collection");
-//
+
         txt_pay_for_host.setText("호스트명: " + get_host_name);
         txt_pay_prod_name.setText("상품명: " + get_prod_name);
 
@@ -94,13 +92,11 @@ public class FundingPaymentActivity extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {   //텍스트가 변경 될때마다 Call back
                 pay_input = String.valueOf(txt_pay_input.getText());
                 txt_pay_check.setText(pay_input + " 원");
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
             }
@@ -111,9 +107,7 @@ public class FundingPaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (user != null) {
-
                     Map<String, Object> map = new HashMap<String, Object>();
-
                     databaseReference = database.getReference();
                     databaseReference.child("Users").child(get_Support_uid).child("age").addValueEventListener(new ValueEventListener() {
                         @Override
@@ -122,7 +116,6 @@ public class FundingPaymentActivity extends AppCompatActivity {
                             get_age = Integer.parseInt(get_Age);
 
                             cons_val = check_consume_val(get_age, pay_input, get_price);
-
                             if(cons_val == false) {
                                 int int_collection = Integer.parseInt(get_collection.replaceAll("[\\D]", ""));
                                 int collection_input = Integer.parseInt(pay_input.replaceAll("[\\D]", ""));
@@ -131,7 +124,6 @@ public class FundingPaymentActivity extends AppCompatActivity {
                                 map.put("collection", collection);
                                 databaseReference.child("Fundings").child(get_uid).updateChildren(map);
                             }
-
                             if(cons_val == true){
                                 HashMap<Object, String> userTemp = new HashMap<>();
 
@@ -149,13 +141,10 @@ public class FundingPaymentActivity extends AppCompatActivity {
                                         userRef2.child(get_uid).child(get_Support_uid).setValue(userTemp);
                                         Toast.makeText(FundingPaymentActivity.this, "이상치", Toast.LENGTH_SHORT).show();
                                     }
-
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError error) {
-
                                     }
                                 });
-
                             }else {
                                 Intent intent2 = new Intent(FundingPaymentActivity.this, FundingFinishActivity.class); // 데이터를 전송할 activity 설정
                                 intent2.putExtra("host_name", get_host_name);
@@ -164,22 +153,16 @@ public class FundingPaymentActivity extends AppCompatActivity {
                                 intent2.putExtra("day", get_day);
                                 startActivity(intent2);
                             }
-
-
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
-
-
                 } else {
                     Toast.makeText(FundingPaymentActivity.this , "로그인 후 이용해 주세요.", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplication(), LoginActivity.class));
                 }
-
             }
         });
 //
@@ -199,7 +182,6 @@ public class FundingPaymentActivity extends AppCompatActivity {
         price = Double.parseDouble(get_price.replaceAll("[\\D]", ""));
 
         double x_stdev, y_stdev, price_dist;
-
 
         if(age >19 && age <30){ //20대
             x_stdev = 17460.1909;
@@ -221,7 +203,6 @@ public class FundingPaymentActivity extends AppCompatActivity {
                 return val;
             }
 
-
             price_dist = Math.pow((input - dist_array[1][0]), 2) + Math.pow((price - dist_array[1][1]), 2);
             if(price_dist >= dist_array[1][2]){
                 val = true;
@@ -230,7 +211,6 @@ public class FundingPaymentActivity extends AppCompatActivity {
                 val = false;
                 return val;
             }
-
 
         }else if(age >29 && age <40){ //30대
             x_stdev = 57102.2015;
@@ -258,8 +238,6 @@ public class FundingPaymentActivity extends AppCompatActivity {
                 }
             }
 
-
-
         }else if (age >39 && age <50){ //40대
             x_stdev = 323885.5509;
             y_stdev = 1099441.4471;
@@ -285,15 +263,10 @@ public class FundingPaymentActivity extends AppCompatActivity {
 
                 }
             }
-
-
-
         }else{
             val = false;
         }
-
         return val;
-
     }
 
     //뒤로가기 추가

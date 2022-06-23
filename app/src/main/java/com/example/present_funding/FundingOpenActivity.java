@@ -48,8 +48,6 @@ public class FundingOpenActivity extends AppCompatActivity {
     private BackPressCloseHandler backPressCloseHandler;
 
     private FirebaseAuth firebaseAuth;
-
-    private FirebaseAuth.AuthStateListener firebaseAuthListener;
     DatabaseReference mDatabase;
     FirebaseUser user;
     String uid;
@@ -113,7 +111,6 @@ public class FundingOpenActivity extends AppCompatActivity {
         btn_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 collection = 0;
                 FundingUpload(host_name, get_img, get_brand, get_name, get_price, Month, Day, txt_addr.getText(), txt_addr_detail.getText(), collection, fid, uid);
 

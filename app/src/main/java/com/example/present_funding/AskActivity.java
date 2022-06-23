@@ -27,15 +27,12 @@ public class AskActivity extends AppCompatActivity {
     TextView textView13, txt_ask_support_name, txt_ask_support_collection;
     Button btn_ask_false, btn_ask_true;
 
-    String uid, sid, s_name, collection, s_collection, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid, my_prod_name, s_val;
-    String support_name;
-    Boolean val;
+    String uid, sid, s_name, collection, s_collection,  my_collection, s_val;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener firebaseAuthListener;
     FirebaseUser user;
 
     @Override
@@ -72,7 +69,7 @@ public class AskActivity extends AppCompatActivity {
         btn_ask_true.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(AskActivity.this , "펀딩 후원을 승인합니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(AskActivity.this , "펀딩 후원을 승인합니다.", Toast.LENGTH_LONG).show();
 
                 Map<String, Object> map = new HashMap<String, Object>();
 
@@ -92,41 +89,26 @@ public class AskActivity extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     String sval = snapshot.getValue(String.class);
                                     Boolean s_val = Boolean.parseBoolean(sval);
-                                    //Toast.makeText(AskActivity.this, sval, Toast.LENGTH_SHORT).show();
                                     if(s_val == true) {
                                         s_val = false;
                                         databaseReference.child("Fundings").child(uid).updateChildren(map);
                                         databaseReference.child("Temp").child(uid).child(sid).removeValue();
-                                        //Toast.makeText(AskActivity.this, sval, Toast.LENGTH_SHORT).show();
                                     } else{
-                                        //databaseReference.child("Temp").child(uid).child(sid).removeValue();
-                                        //Toast.makeText(AskActivity.this, s_val, Toast.LENGTH_SHORT).show();
+                                        databaseReference.child("Temp").child(uid).child(sid).removeValue();
                                     }
                                 }
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
-
                                 }
                             });
-//                            int int_collection = Integer.parseInt(my_collection.replaceAll("[\\D]", ""));
-//                            int collection_input = Integer.parseInt(s_collection.replaceAll("[\\D]", ""));
-//                            int_collection += collection_input;
-//                            collection = String.valueOf(int_collection);
-//                            map.put("collection", collection);
-//                            databaseReference.child("Fundings").child(uid).updateChildren(map);
-//                            databaseReference.child("Temp").child(uid).child(sid).removeValue();
                         } else{
                             Toast.makeText(AskActivity.this, "오류가 발생했습니다. 다시 시도 해주십시오.", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
-                //Toast.makeText(AskActivity.this, sid+", "+support_name+", "+s_name+", "+my_collection, Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplication(), MypageActivity.class));
             }
         });
@@ -139,7 +121,6 @@ public class AskActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplication(), MypageActivity.class));
             }
         });
-
     }
 
     private BackPressCloseHandler backPressCloseHandler;

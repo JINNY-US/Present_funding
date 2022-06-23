@@ -76,15 +76,7 @@ public class MypageActivity extends Activity {
         go_ask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
-                //uid = user != null ? user.getUid() : null;
-               // mDatabase = FirebaseDatabase.getInstance().getReference("Temp");
-
                 startActivity(new Intent(MypageActivity.this, AskListActivity.class));
-//                if(mDatabase != null) {
-//                    startActivity(new Intent(MypageActivity.this, MyFundingActivity.class));
-//                }
             }
         });
 
