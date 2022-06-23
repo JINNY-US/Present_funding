@@ -70,7 +70,7 @@ public class FundingStatusActivity extends AppCompatActivity {
         txt_item_name.setText("상품명: " + get_prod_name);
         txt_currunt_price.setText("현재 달성액: " + get_collection + " 원");
 
-        if (lack_money > int_price) {
+        if(int_collection > int_price) {
             lack_money = 0;
         }
 

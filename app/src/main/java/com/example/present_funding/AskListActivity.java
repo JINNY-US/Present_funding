@@ -53,7 +53,7 @@ public class AskListActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
 
-        databaseReference = database.getReference("Temp");          // .child(uid) 여기까지 불러와야 하는데 튕기는 오류가 생김
+        databaseReference = database.getReference("Temp").child(uid);          //  여기까지 불러와야 하는데 튕기는 오류가 생김
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

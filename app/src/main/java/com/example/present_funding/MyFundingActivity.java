@@ -124,6 +124,9 @@ public class MyFundingActivity extends AppCompatActivity {
                     int int_collection = Integer.parseInt(my_collection.replaceAll("[\\D]", ""));
 
                     int lack_money = int_price - int_collection;
+                    if(int_collection > int_price) {
+                        lack_money = 0;
+                    }
                     //int collect_percent = int_price / int_collection;
 
                     txt_lack_price.setText("부족 금액: "+lack_money+" 원");

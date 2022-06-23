@@ -1,7 +1,7 @@
 package com.example.present_funding;
 
 public class Temp {
-    private String support_uid, support_name, temp;
+    private String support_uid, support_name, temp, val;
 
     public Temp() {
     }
@@ -28,5 +28,13 @@ public class Temp {
 
     public void setTemp(String temp) {
         this.temp = temp;
+    }
+
+    public String getVal() {
+        return val;
+    }
+
+    public void setVal(String val) {
+        this.val = val;
     }
 }

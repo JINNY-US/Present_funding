@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +27,9 @@ public class AskActivity extends AppCompatActivity {
     TextView textView13, txt_ask_support_name, txt_ask_support_collection;
     Button btn_ask_false, btn_ask_true;
 
-    String uid, sid, s_name, collection, s_collection, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid, my_prod_name;
+    String uid, sid, s_name, collection, s_collection, my_name, my_img, my_price, my_collection, my_month, my_day, my_fid, my_prod_name, s_val;
+    String support_name;
+    Boolean val;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -52,9 +55,10 @@ public class AskActivity extends AppCompatActivity {
         Intent intent = getIntent(); // ProductAdapter에서 데이터 가져옴
 
 
-        //sid = intent.getStringExtra("sid");
+        sid = intent.getStringExtra("sid");
         s_name = intent.getStringExtra("s_name");
         s_collection = intent.getStringExtra("s_collection");
+        s_val = intent.getStringExtra("val");
 
         txt_ask_support_name.setText("후원자명: "+s_name);
         txt_ask_support_collection.setText("후원 금액: "+s_collection +" 원");
@@ -63,20 +67,18 @@ public class AskActivity extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser(); //로그인한 유저의 정보 가져오기
         uid = user != null ? user.getUid() : null;
         database = FirebaseDatabase.getInstance(); //파이어베이스 연동
+        databaseReference = database.getReference();
 
         btn_ask_true.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AskActivity.this , "펀딩 후원을 승인합니다.", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplication(), MypageActivity.class));
+                //Toast.makeText(AskActivity.this , "펀딩 후원을 승인합니다.", Toast.LENGTH_LONG).show();
 
                 Map<String, Object> map = new HashMap<String, Object>();
 
-                databaseReference = database.getReference();
                 databaseReference.child("Fundings").child(uid).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                         if(user != null) {
                             my_collection = snapshot.child("collection").getValue(String.class);
                             int int_collection = Integer.parseInt(my_collection.replaceAll("[\\D]", ""));
@@ -84,7 +86,36 @@ public class AskActivity extends AppCompatActivity {
                             int_collection += collection_input;
                             collection = String.valueOf(int_collection);
                             map.put("collection", collection);
-                            databaseReference.child("Fundings").child(uid).updateChildren(map);         // 모금액이 s_collection 만큼 무한 증식하는 오류가 있음
+
+                            databaseReference.child("Temp").child(uid).child(sid).child("val").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String sval = snapshot.getValue(String.class);
+                                    Boolean s_val = Boolean.parseBoolean(sval);
+                                    //Toast.makeText(AskActivity.this, sval, Toast.LENGTH_SHORT).show();
+                                    if(s_val == true) {
+                                        s_val = false;
+                                        databaseReference.child("Fundings").child(uid).updateChildren(map);
+                                        databaseReference.child("Temp").child(uid).child(sid).removeValue();
+                                        //Toast.makeText(AskActivity.this, sval, Toast.LENGTH_SHORT).show();
+                                    } else{
+                                        //databaseReference.child("Temp").child(uid).child(sid).removeValue();
+                                        //Toast.makeText(AskActivity.this, s_val, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+//                            int int_collection = Integer.parseInt(my_collection.replaceAll("[\\D]", ""));
+//                            int collection_input = Integer.parseInt(s_collection.replaceAll("[\\D]", ""));
+//                            int_collection += collection_input;
+//                            collection = String.valueOf(int_collection);
+//                            map.put("collection", collection);
+//                            databaseReference.child("Fundings").child(uid).updateChildren(map);
+//                            databaseReference.child("Temp").child(uid).child(sid).removeValue();
                         } else{
                             Toast.makeText(AskActivity.this, "오류가 발생했습니다. 다시 시도 해주십시오.", Toast.LENGTH_SHORT).show();
                         }
@@ -95,13 +126,15 @@ public class AskActivity extends AppCompatActivity {
 
                     }
                 });
+                //Toast.makeText(AskActivity.this, sid+", "+support_name+", "+s_name+", "+my_collection, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplication(), MypageActivity.class));
             }
         });
 
         btn_ask_false.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.child("Temp").child(uid).removeValue();
+                databaseReference.child("Temp").child(uid).child(sid).removeValue();
                 Toast.makeText(AskActivity.this , "펀딩 후원을 거절합니다.", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getApplication(), MypageActivity.class));
             }

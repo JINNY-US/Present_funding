@@ -142,10 +142,11 @@ public class FundingPaymentActivity extends AppCompatActivity {
                                         userTemp.put("support_uid", get_Support_uid);
                                         userTemp.put("support_name", get_Support_name); //후원자명
                                         userTemp.put("temp", pay_input);
+                                        userTemp.put("val", String.valueOf(true));
 
                                         FirebaseDatabase database2 = FirebaseDatabase.getInstance();
                                         DatabaseReference userRef2 = database2.getReference("Temp");
-                                        userRef2.child(get_uid).setValue(userTemp);
+                                        userRef2.child(get_uid).child(get_Support_uid).setValue(userTemp);
                                         Toast.makeText(FundingPaymentActivity.this, "이상치", Toast.LENGTH_SHORT).show();
                                     }
 

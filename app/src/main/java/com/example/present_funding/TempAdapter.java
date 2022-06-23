@@ -66,9 +66,10 @@ public class TempAdapter extends RecyclerView.Adapter<TempAdapter.TempViewHolder
                     if(pos != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(context, AskActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 데이터를 전송할 activity 설정
 
-                        //intent.putExtra("sid", arrayList.get(pos).getSupport_uid());
+                        intent.putExtra("sid", arrayList.get(pos).getSupport_uid());
                         intent.putExtra("s_name", arrayList.get(pos).getSupport_name());
                         intent.putExtra("s_collection", arrayList.get(pos).getTemp());
+                        //intent.putExtra("val", arrayList.get(pos).getVal());
 
                         context.startActivity(intent);                                  // 데이터 전송 후 화면 전환
                     }
